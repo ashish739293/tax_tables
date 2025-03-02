@@ -1,84 +1,139 @@
 
 <style>
-    .about-section {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 60px 20px;
-        background: #f8f9fa; /* Light background */
-    }
+   .about-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background: #f8f9fa; /* Light background */
+}
+
+.about-container {
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Left Side - Text */
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.about-text h2::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #007bff;
+    display: block;
+    margin-top: 5px;
+}
+
+.about-text p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about-text .btn-learn {
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.about-text .btn-learn:hover {
+    background-color: #0056b3;
+}
+
+/* Right Side - Image */
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
     .about-container {
-        max-width: 1200px;
-        display: flex;
-        align-items: center;
-        gap: 40px;
-    }
-    .about-text {
-        flex: 1;
-    }
-    .about-text h2 {
-        font-size: 36px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 15px;
-        position: relative;
-    }
-    .about-text h2::after {
-        content: "";
-        width: 80px;
-        height: 4px;
-        background: #007bff;
-        display: block;
-        margin-top: 5px;
-    }
-    .about-text p {
-        font-size: 18px;
-        color: #555;
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-    .about-text .btn-learn {
-        background-color: #007bff;
-        color: white;
-        font-size: 18px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: bold;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-    }
-    .about-text .btn-learn:hover {
-        background-color: #0056b3;
-    }
-    .about-image {
-        flex: 1;
+        flex-direction: column;
         text-align: center;
-    }
-    .about-image img {
-        max-width: 100%;
-        border-radius: 10px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
-        animation: fadeIn 1s ease-in-out;
+        gap: 30px;
     }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-        .about-container {
-            flex-direction: column;
-            text-align: center;
-        }
-        .about-text h2::after {
-            margin: 5px auto;
-        }
+    .about-text {
+        max-width: 90%;
     }
 
-    /* Animation */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+    .about-text h2 {
+        font-size: 32px;
     }
+
+    .about-text h2::after {
+        margin: 5px auto;
+    }
+
+    .about-text p {
+        font-size: 16px;
+    }
+
+    .about-text .btn-learn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 40px 15px;
+    }
+
+    .about-container {
+        gap: 20px;
+    }
+
+    .about-text h2 {
+        font-size: 28px;
+    }
+
+    .about-text p {
+        font-size: 14px;
+    }
+
+    .about-text .btn-learn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 </style>
 
 <div class="about-section">

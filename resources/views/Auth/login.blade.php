@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login </title>
+    <title>Login/Registration </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,63 +20,173 @@
 
 <body>
     <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    @if ($errors->any())
-                        <ul>
-                            {!! implode('', $errors->all('<li class="list-group-item bg-danger">:message</li>')) !!}
-                        </ul>
-                    @endif
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-10">
-                    <div class="wrap d-md-flex">
-                        <div class="img" style="background-image: url(form/images/bg-1.jpg);">
-                        </div>
-                        <div class="login-wrap p-4 p-md-5">
-                            <div class="d-flex">
-                                <div class="w-100">
-                                    <h3 class="mb-4">Login</h3>
-                                </div>
-                            </div>
-                            <form action="/authenticate" method="POST" class="signin-form">
-                                @csrf
-                                <!-- Equivalent to... -->
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                <div class="form-group mb-3">
-                                    <label class="label" for="name">Username</label>
-                                    <input type="text" name="email" class="form-control" placeholder="Username"
-                                        required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="label" for="password">Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password"
-                                        required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" name="submit"
-                                        class="form-control btn btn-primary rounded submit px-3">Login</button>
-                                </div>
-                                <div class="form-group d-md-flex">
-                                    <div class="w-50 text-left">
-                                        <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
-                                            <input type="checkbox" checked>
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="w-50 text-md-right">
-                                        <a href="#">Forgot Password</a>
-                                    </div>
-                                </div>
-                            </form>
-                            <p class="text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container-fluid d-flex justify-content-center align-items-center vh-auto "
+    style="background:rgb(20, 46, 160);">
+    <div class="form-container shadow-lg p-4 rounded-3 bg-white text-center" style="width: 400px;" >
+    <h2 class="fw-bold form-heading">Login Form</h2>
+
+        <!-- Toggle Buttons -->
+        <div class="toggle-buttons d-flex justify-content-center my-3">
+            <button class="btn btn-toggle active me-2" id="loginTab">Login</button>
+            <button class="btn btn-toggle" id="signupTab">Signup</button>
         </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            @csrf
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="login" placeholder="Email or Username" required>
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <a href="/password_reset" class="text-danger d-block text-start">Forgot password?</a>
+            <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signupForm" style="display: none;">
+            @csrf
+            <div class="mb-2">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" name="firstname" placeholder="First Name" required>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <input type="text" class="form-control" name="lastname" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" name="mobile" placeholder="Mobile" required>
+            </div>
+            <div class="mb-2">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            <div class="mb-2">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <div class="mb-2">
+                <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100 mt-3">Register</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Not a member? <a href="#" class="text-danger" id="toggleSignup">Signup now</a>
+        </p>
+    </div>
+</div>
+
+<style>
+/* Form Container */
+.form-container {
+    width: 400px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+
+    margin:10% 0%;
+}
+
+/* Toggle Buttons */
+.btn-toggle {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: #ddd;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.btn-toggle.active {
+    background:rgb(80, 63, 233);
+    color: white;
+}
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: 10px;
+        padding: 10px;
+        text-align: center;
+    }
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#loginTab").click(function() {
+        $("#loginForm").show();
+        $("#signupForm").hide();
+        $("#form-heading").text("Login Form"); // Change Heading
+        $(this).addClass("active");
+        $("#signupTab").removeClass("active");
+    });
+
+    $("#signupTab").click(function() {
+        $("#loginForm").hide();
+        $("#signupForm").show();
+        $("#form-heading").text("Registration Form"); // Change Heading
+        $(this).addClass("active");
+        $("#loginTab").removeClass("active");
+    });
+
+    $("#toggleSignup").click(function(e) {
+        e.preventDefault();
+        $("#signupTab").click();
+    });
+
+    // AJAX Login
+    $("#loginForm").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/login_user",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(response) {
+                showToast(response.message, "success"); // Success Toast
+                window.location.href = response.redirect;
+            },
+            error: function(response) {
+                showToast(response.message, "error"); // Error Toast
+            }
+        });
+    });
+
+    // AJAX Registration
+    $("#signupForm").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/register_user",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(response) {
+                alert(response.message);
+                showToast(response.message, "success"); // Success Toast
+                $("#loginTab").click();
+            },
+            error: function(response) {
+                // Check where the message is coming from
+             let errorMessage = "Something went wrong"; // Default message
+
+            if (response.responseJSON && response.responseJSON.message) {
+                errorMessage = response.responseJSON.message; 
+            } else if (response.message) {
+                errorMessage = response.message;
+            }
+                showToast(errorMessage, "error"); // Error Toast
+            }
+        });
+    });
+});
+
+</script>
     </section>
 
     <script src="js/jquery.min.js"></script>
@@ -86,4 +196,4 @@
 
 </body>
 
-@include('includes.footer')
+

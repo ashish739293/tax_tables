@@ -1,4 +1,3 @@
-
 <div class="hero-section">
     <div class="container">
         <div class="hero-content">
@@ -25,8 +24,8 @@
         background: url("https://taxtablet.in/wp-content/uploads/2024/05/INCOME-TAX-RETURNS-3.jpg") no-repeat center center/cover;
         display: flex;
         align-items: center;
-        justify-content: start;
-        padding-left: 5%;
+        justify-content: center;
+        padding: 5%;
     }
 
     /* Dark Overlay */
@@ -37,7 +36,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6); /* Darker overlay for better readability */
+        background: rgba(0, 0, 0, 0.6);
     }
 
     /* Content */
@@ -47,27 +46,26 @@
         color: #fff;
         padding: 20px;
         z-index: 2;
+        text-align: center;
     }
 
     /* Title */
     .hero-title {
-        font-size: 40px;
+        font-size: clamp(28px, 4vw, 40px);
         font-weight: bold;
         line-height: 1.3;
-        text-transform: capitalize;
         margin-bottom: 15px;
         color: #ffffff;
     }
 
     .hero-title span {
-        color: #4cb9ff; /* Blue for emphasis */
+        color: #4cb9ff;
     }
 
     /* Text */
     .hero-text {
-        font-size: 18px;
+        font-size: clamp(16px, 2vw, 18px);
         line-height: 1.6;
-        color: #ffffff;
         margin-bottom: 20px;
     }
 
@@ -86,5 +84,33 @@
 
     .btn-primary:hover {
         background: #0056b3;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-section {
+            height: auto;
+            padding: 10% 5%;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 90%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 24px;
+        }
+
+        .hero-text {
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
     }
 </style>

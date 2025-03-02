@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Appointment extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'email', 'phone', 'service', 'time_slot', 'message'];
 }

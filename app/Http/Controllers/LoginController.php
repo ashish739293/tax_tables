@@ -35,21 +35,4 @@ class LoginController extends Controller
         return view('create_user');
     }
 
-    public function store(Request $request){
-        $name = $request->input('name');
-        $phone = $request->input('phone');
-        $age = $request->input('age');
-
-        $users = new user_model;
-
-        $users -> name =$name;
-        $users -> phone =$phone;
-        $users -> age =$age;
-
-        $users ->save();
-
-        return "new record added ID: ".$users->id;
-
-
-    }
 }

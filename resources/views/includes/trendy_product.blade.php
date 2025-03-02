@@ -22,6 +22,7 @@
     }
     .swiper-container {
         overflow: hidden;
+        padding-bottom: 40px;
     }
     .swiper-wrapper {
         display: flex;
@@ -29,7 +30,7 @@
     .swiper-slide {
         display: flex;
         justify-content: center;
-        align-items: stretch; /* Ensure equal height */
+        align-items: stretch;
     }
     .client-card {
         background: white;
@@ -42,7 +43,8 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: 100%;
+        height: 300px; /* Fixed height */
+        overflow: hidden;
     }
     .client-card h4 {
         font-size: 20px;
@@ -54,6 +56,12 @@
         font-size: 16px;
         color: #555;
         flex-grow: 1;
+        margin: 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limits text to 3 lines */
+        -webkit-box-orient: vertical;
     }
     .star-rating {
         color: #f8b400;
@@ -72,10 +80,8 @@
             <div class="swiper-wrapper" id="clients-container">
                 <!-- JavaScript will dynamically insert cards here -->
             </div>
-            <!-- Pagination & Navigation -->
+            <!-- Pagination -->
             <div class="swiper-pagination"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
     </div>
 </div>
@@ -106,9 +112,9 @@
                     clientsContainer.appendChild(card);
                 });
 
-                // Initialize Swiper for default 3 cards per view
+                // Initialize Swiper with Responsive Design
                 new Swiper(".swiper-container", {
-                    slidesPerView: 3,
+                    slidesPerView: 1, // Default 1 for mobile
                     spaceBetween: 20,
                     loop: clients.length > 3, // Enable loop only if more than 3 clients
                     autoplay: clients.length > 3 ? {
@@ -119,14 +125,9 @@
                         el: ".swiper-pagination",
                         clickable: true,
                     },
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
                     breakpoints: {
-                        1024: { slidesPerView: 3 },
-                        768: { slidesPerView: 2 },
-                        480: { slidesPerView: 1 }
+                        768: { slidesPerView: 2 }, // Tablets
+                        1200: { slidesPerView: 3 }  // Large screens
                     }
                 });
             })

@@ -150,20 +150,68 @@
     }
 
     /* Responsive Design */
-    @media (max-width: 992px) {
-        .home-container {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .form-container {
-            position: static;
-            width: 100%;
-            margin-top: 20px;
-        }
+@media (max-width: 992px) {
+    .home-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
     }
+
+    .left-section {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .left-section h1 {
+        font-size: 36px;
+    }
+
+    .left-section p {
+        font-size: 18px;
+    }
+
+    .form-container {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+        max-width: 90%;
+    }
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+    .home-container {
+        padding-top: 100px; /* Space for navbar */
+    }
+
+    .form-container {
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    .left-section h1 {
+        font-size: 28px;
+    }
+
+    .typing-text {
+        font-size: 30px;
+    }
+
+    .left-section h4 {
+        font-size: 18px;
+    }
+
+    .left-section p {
+        font-size: 16px;
+    }
+
+    .contact-section {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
 </style>
 
 <div class="home-container">
@@ -196,7 +244,7 @@
 
         <h4>Book Appointment</h4>
 
-        <form action="" method="POST">
+        <form id="appointmentForm" >
             @csrf
             <input type="text" name="name" class="form-control" placeholder="Name" required>
             <input type="email" name="email" class="form-control" placeholder="Email" required>
@@ -208,12 +256,39 @@
             </select>
             <input type="text" name="time_slot" class="form-control" placeholder="Suitable Time Slot" required>
             <textarea type="text" name="message" class="form-control" placeholder="Message"></textarea>
-            <button type="submit" class="btn btn-primary form-control">Send Message</button>
+            <!-- <button type="submit" class="btn btn-primary form-control">Send Message</button> -->
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+
         </form>
-        @if(session('success'))
-            <div class="alert alert-success mt-3">
-                {{ session('success') }}
-            </div>
-        @endif
     </div>
 </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Add this if jQuery is missing -->
+<script>
+    $(document).ready(function() {
+        $('#appointmentForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+
+            let formData = $(this).serialize(); // Serialize form data
+            console.log("Form Data: ", formData); // Debugging
+
+            $.ajax({
+                type: "POST",
+                url: "/appointment",
+                data: formData,
+                success: function(response) {
+                    console.log("Success Response: ", response); // Debugging
+                    showToast("✅  Appointment booked successfully!","success");
+                    $('#appointmentForm')[0].reset(); // Reset form
+                },
+                error: function(xhr, status, error) {
+                    console.log("Error Response: ", xhr.responseText); // Debugging
+                    showToast("❌  Failed to book appointment. Try again!","error");
+                }
+            });
+        });
+
+    });
+</script>

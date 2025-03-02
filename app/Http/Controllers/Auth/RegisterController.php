@@ -28,7 +28,7 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect('/login');
         //show fetched data in page in laravel
 
     }

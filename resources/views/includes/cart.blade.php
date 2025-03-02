@@ -1,10 +1,16 @@
 
 
-<div class="container text-center my-5">
-    <h2 class="fw-bold text-primary"> Select Your Income Source</h2>
-    <p class="text-dark fs-5">
+<div class="container-fluid pt-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Select Your Income Source</span></h2>
+    </div>
+    <p class="text-dark fs-5 text-center">
     Explore Your Earning Potential: Discover Diverse Income Sources for Financial Growth! 
     </p>
+</div>
+
+<div class="container text-center">
+    
 
     <div class="row mt-4" id="income-cards">
         <!-- Cards will be inserted here dynamically -->

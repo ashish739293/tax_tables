@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Models\IncomeSource;
 use App\Http\Controllers\IncomeSourceController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -31,8 +33,6 @@ Route::get('/', function () {
 */
 
 Route::get('/', function () {
-
-    
     return view('index');
 });
 
@@ -40,18 +40,6 @@ Route::get('/', function () {
 Route::get('/income-sources', [IncomeSourceController::class, 'index']);
 
 
-Route::get('/login', function () {
-    return view('login');
-});
-
-Route::get('/register', function () {
-    return view('register');
-});
-
-
-Route::get('/shop', function () {
-    return view('shop',['title' => '| shop']);
-});
 
 Route::get('/blogs', function () {
     return view('blogs',['title' => '| blogs']);
@@ -65,42 +53,35 @@ Route::get('/profile', function () {
     return view('auth.profile',['title'=>'| profile']);
 });
 
-Route::get('/cart', function () {
-    return view('cart',['title'=>'| cart']);
-});
-
-Route::get('/wishlist', function () {
-    return view('wishlist',['title'=>'| Wishlist']);
-});
 
 Route::get('/layout', function () {
     return view('includes.layout',['title'=>'| profile']);
 });
-/*
-Route::view('/sample', 'sample');
 
-Route::get('/login', [LoginController::class, 'LoginForm']);
-Route::post('loginAccess', [LoginController::class, 'loginAccess']);
-
-Route::get('/create', [LoginController::class, 'create']);
-Route::post('store', [LoginController::class, 'store']);
-
-Route::get('/create_user', [UserController::class, 'create']);
-//Route::post('store', [UserController::class, 'store']);
-*/
-Route::view('register','Auth.register')->middleware('guest');
-Route::post('store',[RegisterController::class,'store']);
-Route::view('home','home')->middleware('auth');
+// Route::view('index','home')->middleware('auth');
 
 Route::view('login','Auth.login')->middleware('guest')->name('login');
-Route::post('authenticate',[LoginController::class,'authenticate']);
-Route::get('logout',[LoginController::class,'logout']);
+Route::view('password_reset','Auth.email')->middleware('guest')->name('email');
 
-Route::get('/dress',[CategoryController::class,'dress'])->name('profile');
-Route::get('/mobile',[CategoryController::class,'phones']);
-Route::get('/jewels',[CategoryController::class,'jewels']);
-Route::get('/shoes',[CategoryController::class,'shoes']);
-Route::get('/jackets',[CategoryController::class,'jackets']);
-Route::get('/accerssories',[CategoryController::class,'accerssories']);
-Route::get('/bags',[CategoryController::class,'bags']);
+// Route::post('authenticate',[LoginController::class,'authenticate']);
 
+
+Route::get('/check-auth', function () {
+    return response()->json(['isAuthenticated' => Auth::check()]);
+})->name('check.auth');
+
+Route::get('/blogs', [LoginController::class, 'blogs'])->name('blogs')->middleware('auth');
+Route::get('/invoices', [LoginController::class, 'invoices'])->name('invoices')->middleware('auth');
+Route::get('/subscriptions', [LoginController::class, 'subscriptions'])->name('subscriptions')->middleware('auth');
+Route::get('/payment-confirmation', [LoginController::class, 'paymentConfirmation'])->name('payment.confirmation')->middleware('auth');
+Route::get('/contact', [LoginController::class, 'contact'])->name('contact')->middleware('auth');
+
+//============================= Appointment ==========================================
+
+Route::post('/appointment', [AppointmentController::class, 'submit'])->name('appointment.submit');
+
+//============================= User Regitration Or Login ==========================================
+
+Route::any('/register_user', [UserController::class, 'register'])->name('register');
+Route::any('/login_user', [UserController::class, 'login'])->name('login');
+Route::any('/logout', [UserController::class, 'logout'])->name('logout');

@@ -26,3 +26,71 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+
+<style>
+  #toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4caf50; /* Default green for success */
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateX(100px); /* Initially off-screen */
+      transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .hidden {
+      display: none;
+  }
+</style>
+
+<div id="toast" class="hidden">
+    <span></span>
+</div>
+
+<script>
+function showToast(message, type = 'success') {
+    const toast = document.getElementById("toast");
+    
+    if (!toast) {
+        console.error("Toast element not found!");
+        return;
+    }
+
+    const messageSpan = toast.querySelector("span");
+    if (!messageSpan) {
+        console.error("Toast message span not found!");
+        return;
+    }
+
+    // Set the text
+    messageSpan.textContent = message;
+    toast.classList.remove("hidden");
+
+    // Apply color based on type
+    if (type === 'success') {
+        toast.style.backgroundColor = "#4caf50"; // Green
+    } else {
+        toast.style.backgroundColor = "#f44336"; // Red
+    }
+
+    // Show toast with animation
+    toast.style.opacity = "1";
+    toast.style.transform = "translateX(0)";
+    if (toast) {
+        toast.style.zIndex = "1000"; // Ensure it appears above other elements
+        toast.style.position = "fixed"; // Required for z-index to work
+    }
+
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(100px)";
+        setTimeout(() => {
+            toast.classList.add("hidden");
+        }, 300);
+    }, 5000);
+}
+</script>

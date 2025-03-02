@@ -1,8 +1,6 @@
 <!--Head-->
 @include('includes.head', ['title' => ''])
 
-<!-- Topbar -->
-
 <!-- Novbar -->
 @include('includes.navbar_index')
 
@@ -22,11 +20,6 @@
 <!-- Subscribe Start -->
 @include('includes.stay_updated')
 <!-- Subscribe End -->
-
-<!-- Products Start -->
-<!-- Products End -->
-
-<!-- Vender -->
 
 <!-- Include file from include/footer.blade.php file -->
 @include('includes.footer')

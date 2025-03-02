@@ -21,10 +21,35 @@ class LoginController extends Controller
         if (Auth::attempt(['email'=>$email,'password'=>$password])) {
             $user = User::where('email',$email)->first();
             Auth::login($user);
-            return redirect('/');
+            return redirect('/login');
         }else{
             return back()->withErrors(['Invalid credentials!']);
         }
+    }
+
+    public function invoices()
+    {
+        return view('invoices');
+    }
+
+    public function subscriptions()
+    {
+        return view('subscriptions');
+    }
+
+    public function paymentConfirmation()
+    {
+        return view('payment-confirmation');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function blogs()
+    {
+        return view('blogs',['title' => '| blogs']);
     }
 
     public function logout(){

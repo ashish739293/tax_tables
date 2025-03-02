@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('fees');
+            $table->text('image_url');
             $table->timestamps();
         });
     }

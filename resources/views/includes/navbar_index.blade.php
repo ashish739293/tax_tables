@@ -4,34 +4,50 @@
         <div class="container-fluid px-xl-5">
             <!-- Logo -->
             <a href="/" class="navbar-brand text-uppercase font-weight-bold">
-                <span class="text-primary"><img src="https://taxtablet.in/wp-content/uploads/2024/05/cropped-image-removebg-preview-65.png" height="40"/></span>
+                <span class="text-primary">
+                    <img src="https://taxtablet.in/wp-content/uploads/2024/05/cropped-image-removebg-preview-65.png" height="40"/>
+                </span>
             </a>
 
             <!-- Navbar Toggler -->
-            <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Navbar Items -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blogs" class="nav-link">Blogs</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a href="/shop" class="nav-link dropdown-toggle" id="shopDropdown" role="button" data-toggle="dropdown">Account</a>
+                        <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Login</a>
-                            <a class="dropdown-item" href="#">Password Reset</a>
-                            <a class="dropdown-item" href="#">My Invoice</a>
+                            <a class="dropdown-item" href="/login">Login</a>
+                            <a class="dropdown-item" href="/password_reset">Password Reset</a>
+                            <a class="dropdown-item" href="/invoices">My Invoice</a>
+                            <a class="dropdown-item" href="/subscriptions">My Subscriptions</a>
+                            <a class="dropdown-item" href="/payment-confirmation">Payment Confirmation</a>
+                            <a class="dropdown-item" href="/contact">Contact</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-                    <li class="nav-item"><a href="/blogs" class="nav-link">Blogs</a></li>
                     @auth
-                    <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
-                    <li class="nav-item"><a href="/logout" class="nav-link btn btn-danger text-light mx-2 rounded-pill">Logout</a></li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/logout" class="nav-link btn btn-danger text-light mx-2 rounded-pill">Logout</a>
+                    </li>
                     @else
-                    <!-- <li class="nav-item"><a href="/login" class="nav-link btn btn-outline-primary mx-2 rounded-pill">Login</a></li> -->
-                    <li class="nav-item"><a href="/register" class="nav-link btn btn-primary text-light mx-2 rounded-pill">Appointment</a></li>
+                    <li class="nav-item">
+                        <a href="https://wa.link/z5h1qf" class="nav-link btn btn-primary text-light mx-2 rounded-pill">Appointment</a>
+                    </li>
                     @endauth
                 </ul>
             </div>
@@ -41,107 +57,169 @@
 <!-- Navbar End -->
 
 <!-- Banner Start -->
-<!-- Show Banner Only on Home Page -->
-@if(Request::is('/')) 
-    @include('includes.banner')
+@if(Request::is('/'))
+@include('includes.banner')
 @endif
-
 <!-- Banner End -->
 
 <style>
 /* General Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Default Transparent Navbar */
 .navbar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background: transparent;
-  transition: background 0.3s ease-in-out, padding 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: transparent;
+    transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Navbar Links - Default (White Text) */
-.navbar-nav .nav-item .nav-link {
-  color: white !important;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-/* Navbar Scroll Effect */
 .navbar.scrolled {
-  background: white;
-  padding: 10px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 6px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 65px;
 }
 
-/* Navbar Links - After Scrolling (Black Text) */
-.navbar.scrolled .nav-item .nav-link {
-  color: black !important;
+.navbar .nav-link {
+    color: white !important;
+    transition: color 0.3s ease;
 }
 
-/* Navbar Menu Hover Effect */
-.navbar-nav .nav-item .nav-link:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: #ff6b6b !important;
+.navbar.scrolled .nav-link {
+    color: black !important;
 }
 
-/* Banner Section - Increased Height */
-.carousel-item {
-  height: 700px; /* Increased height */
+.navbar-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  padding: 20px;
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
-/* Login/Register Buttons */
-.btn-login,
-.btn-register {
-  background: linear-gradient(45deg, #ff6b6b, #ffcc00);
-  color: white !important;
-  padding: 10px 15px;
-  border-radius: 25px;
-  transition: 0.3s ease-in-out;
-  border: none;
-}
-
-.btn-login:hover,
-.btn-register:hover {
-  background: linear-gradient(45deg, #ffcc00, #ff6b6b);
-  transform: scale(1.1);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Navbar */
+/* Mobile menu styles */
 @media (max-width: 992px) {
     .navbar-nav {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
+        text-align: center;
         padding: 10px;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: none;
+    }
+    .nav-item.dropdown.show .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+        position: static;
+        width: 100%;
         text-align: center;
     }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ff6b6b !important;
+    background: rgba(41, 43, 206, 0.1);
 }
 </style>
 
 <script>
 window.addEventListener("scroll", function () {
-  let navbar = document.querySelector(".navbar");
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
+    let navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
 });
 
+// Navbar Dropdown Fix for Mobile & Desktop
+document.addEventListener("DOMContentLoaded", function () {
+    let accountDropdown = document.getElementById("shopDropdown");
+    let dropdownMenu = accountDropdown.nextElementSibling;
 
+    function closeAllDropdowns() {
+        document.querySelectorAll(".dropdown-menu").forEach(menu => {
+            menu.style.display = "none";
+        });
+    }
+
+    // Hover functionality for desktop
+    if (window.innerWidth > 992) {
+        document.querySelector(".nav-item.dropdown").addEventListener("mouseenter", function () {
+            dropdownMenu.style.display = "block";
+        });
+
+        document.querySelector(".nav-item.dropdown").addEventListener("mouseleave", function () {
+            dropdownMenu.style.display = "none";
+        });
+    }
+
+    // Click functionality for mobile
+    accountDropdown.addEventListener("click", function (e) {
+        if (window.innerWidth <= 992) {
+            e.preventDefault();
+            if (dropdownMenu.style.display === "block") {
+                dropdownMenu.style.display = "none";
+            } else {
+                closeAllDropdowns(); // Close other dropdowns
+                dropdownMenu.style.display = "block";
+            }
+        }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".nav-item.dropdown")) {
+            closeAllDropdowns();
+        }
+    });
+});
+
+// Logout with AJAX
+$(document).ready(function () {
+    $('#logoutBtn').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/logout",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                alert(response.message);
+                window.location.href = "/login";
+            },
+            error: function () {
+                alert("Logout failed. Try again!");
+            }
+        });
+    });
+});
 </script>

@@ -4,7 +4,6 @@
 <!-- Header Start -->
 @include('includes.navbar_index')
 <!-- Header End -->
-@include('includes.page', ['name' => 'contact'])
 <!-- Page Header End -->
 <!-- contact -->
 @include('includes.contact')
