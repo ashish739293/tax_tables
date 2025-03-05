@@ -3596,7 +3596,10 @@ input[type="button"].btn-block {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
     padding-right: 0;
-    padding-left: 0; } }
+    padding-left: 0; 
+    padding-top: 0; 
+
+  } }
 
 @media (min-width: 992px) {
   .navbar-expand-lg {

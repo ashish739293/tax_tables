@@ -83,5 +83,13 @@ Route::post('/appointment', [AppointmentController::class, 'submit'])->name('app
 //============================= User Regitration Or Login ==========================================
 
 Route::any('/register_user', [UserController::class, 'register'])->name('register');
-Route::any('/login_user', [UserController::class, 'login'])->name('login');
+Route::any('/signin', [UserController::class, 'login'])->name('login');
 Route::any('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+Route::get('/appointments/fetch', [AppointmentController::class, 'fetchAppointments'])->name('appointments.fetch');
+Route::post('/appointments/update-status/{id}/{status}', [AppointmentController::class, 'updateStatus'])->name('appointments.updateStatus');

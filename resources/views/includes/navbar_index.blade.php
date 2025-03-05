@@ -5,7 +5,7 @@
             <!-- Logo -->
             <a href="/" class="navbar-brand text-uppercase font-weight-bold">
                 <span class="text-primary">
-                    <img src="https://taxtablet.in/wp-content/uploads/2024/05/cropped-image-removebg-preview-65.png" height="40"/>
+                    <img src="https://taxtablet.in/wp-content/uploads/2024/05/cropped-logo-taxtablet-removebg-preview-150x38.png" height="40"/>
                 </span>
             </a>
 

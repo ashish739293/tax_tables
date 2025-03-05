@@ -148,7 +148,7 @@
 
         <!-- Right Side - Image -->
         <div class="about-image">
-            <img src="https://taxtablet.in/wp-content/uploads/2024/05/INCOME-TAX-RETURNS-819x1024.png" height="850" width="650" alt="About Us">
+            <img src="/image/aboutUs.jpg" height="850" width="650" alt="About Us">
         </div>
     </div>
 </div>

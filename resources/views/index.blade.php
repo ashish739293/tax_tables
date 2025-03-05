@@ -1,25 +1,42 @@
-<!--Head-->
+<!-- Head -->
 @include('includes.head', ['title' => ''])
 
-<!-- Novbar -->
-@include('includes.navbar_index')
+<!-- Navbar -->
+<div data-aos="fade-down">
+    @include('includes.navbar_index')
+</div>
 
-<!-- feature -->
-@include('includes.cart')
+<!-- Feature -->
+<div data-aos="fade-up">
+    @include('includes.cart')
+</div>
 
-<!-- Category start-->
-@include('includes.category')
-<!-- Category End-->
+<!-- Category -->
+<div data-aos="fade-right">
+    @include('includes.category')
+</div>
 
-<!-- offer -->
-@include('includes.offer')
+<!-- Offer -->
+<div data-aos="fade-left">
+    @include('includes.offer')
+</div>
 
-<!-- Trendy products -->
-@include('includes.trendy_product')
+<!-- Trendy Products -->
+<div data-aos="zoom-in">
+    @include('includes.trendy_product')
+</div>
 
-<!-- Subscribe Start -->
-@include('includes.stay_updated')
-<!-- Subscribe End -->
+<!-- Services -->
+<div data-aos="zoom-in-up">
+    @include('includes.services')
+</div>
 
-<!-- Include file from include/footer.blade.php file -->
-@include('includes.footer')
+<!-- Subscribe -->
+<div data-aos="flip-up">
+    @include('includes.stay_updated')
+</div>
+
+<!-- Footer -->
+<div data-aos="fade-up">
+    @include('includes.footer')
+</div>

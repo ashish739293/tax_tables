@@ -68,7 +68,7 @@
 <style>
     /* Responsive Footer Styling */
     .container-fluid {
-        padding: 20px;
+        padding: 10px;
     }
     .footer-links a {
         font-size: 16px;

@@ -1,12 +1,7 @@
-<!-- Bootstrap & AOS for Animations -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
 <!-- Section Header -->
 <div class="container-fluid pt-5 text-center" data-aos="fade-up">
-    <h2 class="section-title px-5"><span class="px-2">Select Your Income Source</span></h2>
+    <h2 class="section-title px-5"><span class="px-2">Our Services</span></h2>
     <p class="text-dark fs-5">
         Explore Your Earning Potential: Discover Diverse Income Sources for Financial Growth! 
     </p>
@@ -14,7 +9,7 @@
 
 <!-- Cards Container -->
 <div class="container">
-    <div class="row mt-4 mb-5 justify-content-center" id="income-cards">
+    <div class="row mt-4 mb-5 justify-content-center" id="income-service">
         <!-- Cards will be inserted dynamically -->
     </div>
 </div>
@@ -115,7 +110,7 @@
         fetch('/api/income-sources')
             .then(response => response.json())
             .then(data => {
-                let cardContainer = document.getElementById("income-cards");
+                let cardContainer = document.getElementById("income-service");
                 cardContainer.innerHTML = ""; 
 
                 data.forEach((source, index) => {

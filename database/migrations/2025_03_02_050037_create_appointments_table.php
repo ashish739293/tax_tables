@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('service');
             $table->string('time_slot');
+            $table->string('status');
             $table->text('message')->nullable();
             $table->timestamps();
         });

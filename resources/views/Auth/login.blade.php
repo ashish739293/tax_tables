@@ -146,7 +146,7 @@ $(document).ready(function() {
     $("#loginForm").submit(function(e) {
         e.preventDefault();
         $.ajax({
-            url: "/login_user",
+            url: "/signin",
             type: "POST",
             data: $(this).serialize(),
             success: function(response) {
