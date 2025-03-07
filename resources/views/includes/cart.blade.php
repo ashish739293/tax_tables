@@ -1,4 +1,4 @@
-<!-- Bootstrap & AOS for Animations -->
+Bootstrap & AOS for Animations
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -21,128 +21,154 @@
 
 <style>
     /* Card Design */
-    .card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px);
-        border-radius: 15px;
+    .card1 {
+        background: white;
+        border-radius: 10px;
         overflow: hidden;
-        transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        color: white;
-        width: 100%;
-        max-width: 350px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
         height: 480px;
+        transition: none !important; 
+    }
+
+    /* Image Container */
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 200px; /* Increased Height */
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    
+
+    /* Overlay for Blur Effect */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(241, 234, 234, 0.21);
         display: flex;
         flex-direction: column;
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: left;
+        backdrop-filter: blur(1px); /* Blur Effect */
     }
 
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    .overlay:hover {
+        background: rgba(75, 71, 71, 0.57);
+        backdrop-filter: blur(3px);
     }
 
-    /* Animated Gradient Hover */
-    .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(0, 123, 255, 0.2), rgba(255, 255, 255, 0.1));
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
+    /* Price Text */
+    .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 5px;
     }
 
-    .card:hover::before {
-        opacity: 1;
+    /* Button */
+    .overlay-btn {
+        margin-top: 10px;
+        background:#007bff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 15px;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
     }
 
-    /* Card Image */
-    .card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        transition: transform 0.3s ease-in-out;
-    }
 
-    .card:hover img {
-        transform: scale(1.1);
+    .overlay-btn:hover {
+        background: #ff8800;
     }
 
     /* Card Body */
     .card-body {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         padding: 20px;
     }
 
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #f8c146;
-    }
-
-    .text-muted {
-        font-size: 1rem;
-        color: #d3d3d3;
-        font-weight: 500;
-    }
-
-    /* Button Styling */
-    .btn-primary {
-        background: linear-gradient(135deg, #007BFF, #0056b3);
-        border: none;
-        padding: 12px;
-        border-radius: 25px;
+    .card-title1 {
         font-size: 1rem;
         font-weight: bold;
-        color: white;
-        transition: all 0.3s ease-in-out;
-        text-transform: uppercase;
+        color:rgb(21, 68, 221);
     }
 
-    .btn-primary:hover {
-        background: linear-gradient(135deg, #0056b3, #007BFF);
-        transform: scale(1.05);
+    .key-points {
+        list-style: none;
+        padding: 0;
     }
+
+    .key-points li {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
 </style>
 
 <!-- JavaScript to Fetch and Insert Cards Dynamically -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch('/api/income-sources')
-            .then(response => response.json())
-            .then(data => {
-                let cardContainer = document.getElementById("income-cards");
-                cardContainer.innerHTML = ""; 
+    window.onload = function () {
+    let cardContainer = document.getElementById("income-cards");
 
-                data.forEach((source, index) => {
-                    let delay = index * 150; 
-                    let cardHTML = `
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" data-aos="zoom-in" data-aos-delay="${delay}">
-                            <div class="card" data-tilt>
+    if (!cardContainer) {
+        console.error("Error: Element with ID 'income-cards' not found!");
+        return;
+    }
+
+    fetch('/api/income-sources')
+        .then(response => response.json())
+        .then(data => {
+            cardContainer.innerHTML = ""; 
+
+            data.forEach((source, index) => {
+                console.log(source);
+                let optionsArray = [];
+                try {
+                    optionsArray = JSON.parse(source.options);
+                } catch (error) {
+                    console.error("Error parsing options:", error);
+                }
+
+                let keyPointsHTML = Array.isArray(optionsArray) && optionsArray.length
+                        ? `<ul class="key-points">${optionsArray.map(point => `<li><i class="fas fa-check-circle text-success me-2"></i> ${point}</li>`).join("")}</ul>` 
+                        : "";
+
+                let cardHTML = `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card1">
+                            <div class="image-container">
                                 <img src="https://taxtablet.in/wp-content/uploads/2024/05/2-1024x576.png" class="card-img-top" alt="Income Source">
-                                <div class="card-body">
-                                    <h5 class="card-title">${source.title}</h5>
-                                    <p class="text-muted">Fees – Rs ${source.fees}/-</p>
-                                    <a href="#" class="btn btn-primary w-100">FILE NOW →</a>
+                                <div class="overlay">
+                                    <p>Starts from @</p>
+                                    <p class="price">₹ ${source.fees}/-</p>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <p class="card-title1">${source.title}</p>
+                                ${keyPointsHTML}
+                                <a href="#" class="btn overlay-btn">Let's Start</a>
+                            </div>
                         </div>
-                    `;
-                    cardContainer.innerHTML += cardHTML;
-                });
-
-                AOS.init();
-                VanillaTilt.init(document.querySelectorAll(".card"), {
-                    max: 10,
-                    speed: 400,
-                    glare: true,
-                    "max-glare": 0.3
-                });
-            })
-            .catch(error => console.error('Error fetching income sources:', error));
-    });
+                    </div>
+                `;
+                cardContainer.innerHTML += cardHTML;
+            });
+        })
+        .catch(error => console.error('Error fetching income sources:', error));
+};
 </script>
