@@ -1,6 +1,6 @@
 
 <style>
-   .about-section {
+.about-section {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,13 +18,14 @@
 /* Left Side - Text */
 .about-text {
     flex: 1;
+    max-width: 600px;
 }
 
 .about-text h2 {
     font-size: 36px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     position: relative;
 }
 
@@ -35,6 +36,12 @@
     background: #007bff;
     display: block;
     margin-top: 5px;
+}
+
+.about-text h5 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 10px;
 }
 
 .about-text p {
@@ -54,7 +61,7 @@
     display: inline-block;
     font-weight: bold;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .about-text .btn-learn:hover {
@@ -91,6 +98,10 @@
         font-size: 32px;
     }
 
+    .about-text h5 {
+        font-size: 18px;
+    }
+
     .about-text h2::after {
         margin: 5px auto;
     }
@@ -102,6 +113,10 @@
     .about-text .btn-learn {
         font-size: 16px;
         padding: 10px 20px;
+    }
+
+    .about-image img {
+        max-width: 80%;
     }
 }
 
@@ -118,6 +133,10 @@
         font-size: 28px;
     }
 
+    .about-text h5 {
+        font-size: 16px;
+    }
+
     .about-text p {
         font-size: 14px;
     }
@@ -126,6 +145,38 @@
         font-size: 14px;
         padding: 8px 16px;
     }
+
+    .about-image img {
+        max-width: 100%;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 480px) {
+    .about-section {
+        padding: 30px 10px;
+    }
+
+    .about-text h2 {
+        font-size: 24px;
+    }
+
+    .about-text h5 {
+        font-size: 14px;
+    }
+
+    .about-text p {
+        font-size: 13px;
+    }
+
+    .about-text .btn-learn {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    .about-image img {
+        max-width: 90%;
+    }
 }
 
 /* Animation */
@@ -133,6 +184,7 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
 
 </style>
 
@@ -148,7 +200,7 @@
 
         <!-- Right Side - Image -->
         <div class="about-image">
-            <img src="/image/aboutUs.jpg" height="850" width="650" alt="About Us">
+            <img src="/image/about.jpg" height="850" width="650" alt="About Us">
         </div>
     </div>
 </div>

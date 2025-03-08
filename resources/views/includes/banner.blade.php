@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(55, 55, 61, 0.3); /* Secondary color overlay */
+    background: #0000006b; /* Secondary color overlay */
     padding: 40px;
 }
 
@@ -113,38 +113,28 @@
         font-size: 16px;
     }
 
-    /* Buttons */
-    .btn-custom {
-        display: inline-block;
-        padding: 14px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 30px;
-        transition: all 0.3s ease;
-    }
+   /* Ensure these styles apply only to the specific buttons on this page */
+.home-container .btn.btn-custom.btn-transparent11 {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
 
-    .btn-transparent {
-        background: rgba(255, 255, 255, 0.2);
-        color: #fff;
-        border: 2px solid #fff;
-    }
+.home-container .btn.btn-custom.btn-transparent11:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
 
-    .btn-transparent:hover {
-        background: #fff;
-        color: #000;
-    }
+.home-container .btn.btn-custom.btn-whatsapp11 {
+    background: rgba(39, 228, 14, 0.57) !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
 
-    .btn-whatsapp1 {
-        background: rgba(39, 228, 14, 0.57);
-        color: #fff;
-        border: 2px solid #fff;
-    }
-
-    .btn-whatsapp1:hover {
-        background:rgb(12, 136, 32);
-        color: #fff;
-    }
+.home-container .btn.btn-custom.btn-whatsapp11:hover {
+    background: rgb(12, 136, 32) !important;
+    color: #fff !important;
+}
 
     /* Contact Number */
     .contact-section {
@@ -243,10 +233,10 @@
                 <p>🔥 JUST START FROM ₹400 ONLY 🔥</p>
 
                 <div class="mt-4">
-                    <a class="btn btn-custom btn-transparent me-2" href="https://taxtablet.in/account/">
+                    <a class="btn btn-custom btn-transparent11 me-2" href="https://taxtablet.in/account/">
                         <i class="fas fa-user"></i> Account Login
                     </a>
-                    <a class="btn btn-custom btn-whatsapp1" href="https://wa.link/z5h1qf">
+                    <a class="btn btn-custom btn-whatsapp11" href="https://wa.link/z5h1qf">
                         <i class="fab fa-whatsapp"></i> Chat with Tax Expert
                     </a>
                 </div>
@@ -274,7 +264,8 @@
                 <option value="ITR Filling">ITR Filling</option>
                 <option value="Consultation">Consultation</option>
             </select>
-            <input type="text" name="time_slot" class="form-control" placeholder="Suitable Time Slot" required>
+            <!-- Replace the time_slot input with Flatpickr -->
+            <input type="text" name="time_slot" id="appointmentDate" class="form-control" placeholder="Select Appointment Date" required>
             <textarea type="text" name="message" class="form-control" placeholder="Message"></textarea>
             <!-- <button type="submit" class="btn btn-primary form-control">Send Message</button> -->
             <button type="submit" class="btn btn-primary w-100">Send Message</button>
@@ -310,4 +301,15 @@
     });
 });
 
+</script>
+
+<!-- Initialize Flatpickr -->
+<script>
+    flatpickr("#appointmentDate", {
+        enableTime: true,           // Enables time selection
+        dateFormat: "Y-m-d H:i",    // Date format for output (Year-Month-Day Hour:Minute)
+        minDate: "today",           // Ensures only today and future dates can be selected
+        disableMobile: true,        // Disables mobile browser view of the date picker
+        time_24hr: true             // Uses 24-hour format for time selection
+    });
 </script>

@@ -142,8 +142,17 @@ $(document).ready(function() {
         $("#signupTab").click();
     });
 
-    // AJAX Login
-    $("#loginForm").submit(function(e) {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    // Set the CSRF token in the AJAX setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+
+   // AJAX Login
+   $("#loginForm").submit(function(e) {
         e.preventDefault();
         $.ajax({
             url: "/signin",
@@ -154,7 +163,7 @@ $(document).ready(function() {
                 window.location.href = response.redirect;
             },
             error: function(response) {
-                showToast(response.message, "error"); // Error Toast
+                showToast(response.responseJSON.error, "error"); // Error Toast
             }
         });
     });

@@ -37,6 +37,20 @@ class UserController extends Controller
     // User Login
     public function login(Request $request)
     {
+
+       
+        if (Auth::check()) {
+
+            $user = Auth::user();
+            $redirect="/profile";
+
+            if($user->type=="Admin"){
+                $redirect="/dashboard";
+            }
+
+            return redirect($redirect);
+        }
+
         $request->validate([
             'login' => 'required', // Can be email or username
             'password' => 'required',
@@ -45,7 +59,16 @@ class UserController extends Controller
         $fieldType = filter_var($request->login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         if (Auth::attempt([$fieldType => $request->login, 'password' => $request->password])) {
-            return response()->json(['message' => 'Login Successful', 'redirect' => '/dashboard']);
+
+            // Get the authenticated user
+            $user = Auth::user();
+            $redirect="/profile";
+
+            if($user->type=="Admin"){
+                $redirect="/dashboard";
+            }
+
+            return response()->json(['message' => 'Login Successful', 'redirect' => $redirect,'data'=> $user ]);
         }
 
         return response()->json(['error' => 'Invalid Credentials'], 401);
@@ -58,4 +81,9 @@ class UserController extends Controller
         return redirect('/login')->with('message', 'Logged out successfully!');
     }
 
+    public function profile()
+    {
+        $user = Auth::user(); // Get the authenticated user
+        return view('Profile.profile', compact('user')); // Pass user data to the view
+    }
 }

@@ -8,7 +8,8 @@ use App\Models\IncomeSource;
 use App\Http\Controllers\IncomeSourceController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\IncomeController;
 
 /*
 use App\Http\Controllers\LoginController;
@@ -49,9 +50,6 @@ Route::get('/contact', function () {
     return view('contact',['title'=>'| contact']);
 });
 
-Route::get('/profile', function () {
-    return view('auth.profile',['title'=>'| profile']);
-});
 
 
 Route::get('/layout', function () {
@@ -85,6 +83,8 @@ Route::post('/appointment', [AppointmentController::class, 'submit'])->name('app
 Route::any('/register_user', [UserController::class, 'register'])->name('register');
 Route::any('/signin', [UserController::class, 'login'])->name('login');
 Route::any('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -93,3 +93,18 @@ Route::get('/dashboard', function () {
 Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
 Route::get('/appointments/fetch', [AppointmentController::class, 'fetchAppointments'])->name('appointments.fetch');
 Route::post('/appointments/update-status/{id}/{status}', [AppointmentController::class, 'updateStatus'])->name('appointments.updateStatus');
+
+
+Route::get('/services', function () {
+    return view('admin.services.services');
+});
+
+Route::get('/services_details', [ServiceController::class, 'index']);
+Route::post('/services_details', [ServiceController::class, 'store']);
+Route::get('/services_details/{id}/edit', [ServiceController::class, 'edit']);
+Route::post('/services_update/{id}', [ServiceController::class, 'update']);
+Route::post('/services_delete/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
+
+
+Route::get('/income-form', [IncomeController::class, 'showForm'])->name('income.form');
+Route::post('/submit-income-form', [IncomeController::class, 'submitForm'])->name('submit.income.form');

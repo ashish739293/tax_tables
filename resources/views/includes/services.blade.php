@@ -1,143 +1,202 @@
-
-<!-- Section Header -->
+<!-- Section Header for Services Page -->
 <div class="container-fluid pt-5 text-center" data-aos="fade-up">
-    <h2 class="section-title px-5"><span class="px-2">Our Services</span></h2>
-    <p class="text-dark fs-5">
-        Explore Your Earning Potential: Discover Diverse Income Sources for Financial Growth! 
+    <h2 class="services-title px-5"><span class="px-2">Select Your Service</span></h2>
+    <p class="services-description text-dark fs-5">
+        Explore a Range of Services: Unlock the Best Opportunities for Personal Growth and Success!
     </p>
 </div>
 
-<!-- Cards Container -->
-<div class="container">
-    <div class="row mt-4 mb-5 justify-content-center" id="income-service">
+<!-- Services Cards Container -->
+<div class="services-cards-container">
+    <div class="row mt-4 mb-5 justify-content-center" id="services-cards">
         <!-- Cards will be inserted dynamically -->
     </div>
 </div>
 
+@include('includes.modal_form')
+
 <style>
-    /* Card Design */
-    .card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px);
-        border-radius: 15px;
+    /* Scoped Service Card Styles */
+    .services-card .service-card {
+        background: white;
+        border-radius: 10px;
         overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        color: white;
-        width: 100%;
-        max-width: 350px;
-        height: 480px;
+        height: 100%;
         display: flex;
         flex-direction: column;
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        justify-content: space-between;
     }
 
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    /* Hover Effect for Service Card */
+    .services-card .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
 
-    /* Animated Gradient Hover */
-    .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(0, 123, 255, 0.2), rgba(255, 255, 255, 0.1));
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
+    /* Image Container */
+    .services-card .service-image-container {
+        position: relative;
+        width: 98%;
+        height: 220px;
+        overflow: hidden;
     }
 
-    .card:hover::before {
-        opacity: 1;
-    }
-
-    /* Card Image */
-    .card img {
+    .services-card .service-img-top {
         width: 100%;
-        height: 180px;
+        height: 100%;
         object-fit: cover;
         transition: transform 0.3s ease-in-out;
     }
 
-    .card:hover img {
+    /* Overlay for Blur Effect */
+    .services-card .service-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        backdrop-filter: blur(5px);
+        transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .services-card .service-card:hover .service-img-top {
         transform: scale(1.1);
     }
 
-    /* Card Body */
-    .card-body {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 20px;
+    .services-card .service-overlay:hover {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
     }
 
-    .card-title {
+    /* Service Price Text */
+    .services-card .service-price {
         font-size: 1.5rem;
         font-weight: bold;
-        color: #f8c146;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: #ff8800;
     }
 
-    .text-muted {
+    /* Service Card Body */
+    .services-card .service-card-body {
+        padding: 20px;
+        flex-grow: 1;
+    }
+
+    .services-card .service-card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: rgb(21, 68, 221);
+        margin-bottom: 15px;
+    }
+
+    /* Key Points List */
+    .services-card .service-key-points {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .services-card .service-key-points li {
         font-size: 1rem;
-        color: #d3d3d3;
-        font-weight: 500;
+        color: #333;
+        margin-bottom: 5px;
     }
 
-    /* Button Styling */
-    .btn-primary {
-        background: linear-gradient(135deg, #007BFF, #0056b3);
+    /* Button */
+    .services-card .service-overlay-btn {
+        background: #007bff;
         border: none;
-        padding: 12px;
+        padding: 8px 16px;
         border-radius: 25px;
-        font-size: 1rem;
+        font-size: 14px;
         font-weight: bold;
         color: white;
-        transition: all 0.3s ease-in-out;
         text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease;
     }
 
-    .btn-primary:hover {
-        background: linear-gradient(135deg, #0056b3, #007BFF);
-        transform: scale(1.05);
+    .services-card .service-overlay-btn:hover {
+        background: #ff8800;
     }
+
+    /* Responsive Layout */
+    @media (max-width: 991px) {
+        .services-card .col-lg-4 {
+            flex: 0 0 48%;
+            max-width: 48%;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .services-card .col-lg-4 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
 </style>
 
-<!-- JavaScript to Fetch and Insert Cards Dynamically -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch('/api/income-sources')
+    window.onload = function () {
+        let serviceCardContainer = document.getElementById("services-cards");
+
+        if (!serviceCardContainer) {
+            console.error("Error: Element with ID 'services-cards' not found!");
+            return;
+        }
+
+        fetch('/api/income-sources')  // Changed API endpoint for services
             .then(response => response.json())
             .then(data => {
-                let cardContainer = document.getElementById("income-service");
-                cardContainer.innerHTML = ""; 
+                serviceCardContainer.innerHTML = ""; 
 
-                data.forEach((source, index) => {
-                    let delay = index * 150; 
+                data.forEach((service) => {
+                    let optionsArray = [];
+                    try {
+                        optionsArray = JSON.parse(service.options);
+                    } catch (error) {
+                        console.error("Error parsing options:", error);
+                    }
+
+                    let keyPointsHTML = Array.isArray(optionsArray) && optionsArray.length
+                            ? `<ul class="service-key-points">${optionsArray.map(point => `<li><i class="fas fa-check-circle text-success me-2"></i> ${point}</li>`).join("")}</ul>` 
+                            : "";
+
                     let cardHTML = `
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" data-aos="zoom-in" data-aos-delay="${delay}">
-                            <div class="card" data-tilt>
-                                <img src="https://taxtablet.in/wp-content/uploads/2024/05/2-1024x576.png" class="card-img-top" alt="Income Source">
-                                <div class="card-body">
-                                    <h5 class="card-title">${source.title}</h5>
-                                    <p class="text-muted">Fees – Rs ${source.fees}/-</p>
-                                    <a href="#" class="btn btn-primary w-100">FILE NOW →</a>
+                        <div class="services-card col-lg-4 col-md-6 col-sm-12 mb-4">
+                            <div class="service-card">
+                                <div class="service-image-container">
+                                    <img src="${service.image_url || 'https://taxtablet.in/wp-content/uploads/2024/05/2-1024x576.png'}" class="service-img-top" alt="Service Image">
+                                    <div class="service-overlay">
+                                        <p>Starts from @</p>
+                                        <p class="service-price">₹ ${service.fees}/-</p>
+                                    </div>
+                                </div>
+                                <div class="service-card-body">
+                                    <p class="service-card-title">${service.title}</p>
+                                    ${keyPointsHTML}
+                                    <button onclick="OpenModal()" type="button" class="service-overlay-btn" >
+                                        APPLY NOW →
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     `;
-                    cardContainer.innerHTML += cardHTML;
-                });
-
-                AOS.init();
-                VanillaTilt.init(document.querySelectorAll(".card"), {
-                    max: 10,
-                    speed: 400,
-                    glare: true,
-                    "max-glare": 0.3
+                    serviceCardContainer.innerHTML += cardHTML;
                 });
             })
-            .catch(error => console.error('Error fetching income sources:', error));
-    });
+            .catch(error => console.error('Error fetching services:', error));
+    };
 </script>

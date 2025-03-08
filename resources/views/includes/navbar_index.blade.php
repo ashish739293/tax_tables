@@ -21,6 +21,12 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a href="/" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Virtual Account</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item">
@@ -64,11 +70,7 @@
 
 <style>
 /* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 .navbar {
     position: fixed;
@@ -144,8 +146,9 @@
 }
 
 .navbar-nav .nav-link:hover {
-    color: #ff6b6b !important;
-    background: rgba(41, 43, 206, 0.1);
+    color:rgb(19, 14, 14) !important;
+    background: rgba(6, 85, 46, 0.1);
+    border-radius : 15px;
 }
 </style>
 

@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'api/*',          // Exclude all API routes (if using API routes that don't require CSRF)
+        'payment/notify', // If you have a payment callback route that doesn't use CSRF protection
+        'some/other/route',
     ];
 }

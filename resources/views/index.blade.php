@@ -12,8 +12,13 @@
 </div>
 
 <!-- Category -->
-<div data-aos="fade-right">
+<div data-aos="fade-down">
     @include('includes.category')
+</div>
+
+<!-- Services -->
+<div data-aos="fade-right">
+    @include('includes.services')
 </div>
 
 <!-- Offer -->
@@ -24,11 +29,6 @@
 <!-- Trendy Products -->
 <div data-aos="zoom-in">
     @include('includes.trendy_product')
-</div>
-
-<!-- Services -->
-<div data-aos="zoom-in-up">
-    @include('includes.services')
 </div>
 
 <!-- Subscribe -->

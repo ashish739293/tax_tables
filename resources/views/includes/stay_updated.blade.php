@@ -20,7 +20,7 @@
     .hero-section {
         position: relative;
         width: 100%;
-        height: 100vh;
+        min-height: 90vh;
         background: url("https://taxtablet.in/wp-content/uploads/2024/05/INCOME-TAX-RETURNS-3.jpg") no-repeat center center/cover;
         display: flex;
         align-items: center;
@@ -42,7 +42,7 @@
     /* Content */
     .hero-content {
         position: relative;
-        max-width: 600px;
+        max-width: 650px;
         color: #fff;
         padding: 20px;
         z-index: 2;
@@ -51,7 +51,7 @@
 
     /* Title */
     .hero-title {
-        font-size: clamp(28px, 4vw, 40px);
+        font-size: clamp(26px, 4vw, 42px);
         font-weight: bold;
         line-height: 1.3;
         margin-bottom: 15px;
@@ -64,7 +64,7 @@
 
     /* Text */
     .hero-text {
-        font-size: clamp(16px, 2vw, 18px);
+        font-size: clamp(14px, 2vw, 18px);
         line-height: 1.6;
         margin-bottom: 20px;
     }
@@ -75,33 +75,62 @@
         background: #007bff;
         color: #fff;
         padding: 12px 24px;
-        border-radius: 5px;
+        border-radius: 6px;
         text-decoration: none;
         font-size: 16px;
         font-weight: bold;
-        transition: background 0.3s ease-in-out;
+        transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
     .btn-primary:hover {
         background: #0056b3;
+        transform: scale(1.05);
     }
 
     /* Responsive */
+    @media (max-width: 1024px) {
+        .hero-section {
+            min-height: 80vh;
+            padding: 8%;
+        }
+
+        .hero-content {
+            max-width: 85%;
+        }
+    }
+
     @media (max-width: 768px) {
         .hero-section {
-            height: auto;
-            padding: 10% 5%;
-            text-align: center;
+            min-height: 70vh;
+            padding: 10%;
         }
 
         .hero-content {
             max-width: 90%;
         }
+
+        .hero-title {
+            font-size: 26px;
+        }
+
+        .hero-text {
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
     }
 
     @media (max-width: 480px) {
+        .hero-section {
+            padding: 15%;
+            min-height: 60vh;
+        }
+
         .hero-title {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .hero-text {
@@ -109,8 +138,8 @@
         }
 
         .btn-primary {
-            padding: 10px 20px;
             font-size: 14px;
+            padding: 8px 18px;
         }
     }
 </style>
