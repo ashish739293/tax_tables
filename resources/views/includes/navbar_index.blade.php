@@ -5,7 +5,7 @@
             <!-- Logo -->
             <a href="/" class="navbar-brand text-uppercase font-weight-bold">
                 <span class="text-primary">
-                    <img src="https://taxtablet.in/wp-content/uploads/2024/05/cropped-logo-taxtablet-removebg-preview-150x38.png" height="40"/>
+                    <img src="/image/TabTabletLogo.png" height="40"/>
                 </span>
             </a>
 
@@ -35,8 +35,12 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
                         <div class="dropdown-menu">
+                            @auth 
+                             <a href="/logout" class="dropdown-item">Logout</a>
+                            @else
                             <a class="dropdown-item" href="/login">Login</a>
-                            <a class="dropdown-item" href="/password_reset">Password Reset</a>
+                            @endauth
+                            <a class="dropdown-item" href="/password_reset">Password Reset</a>  
                             <a class="dropdown-item" href="/invoices">My Invoice</a>
                             <a class="dropdown-item" href="/subscriptions">My Subscriptions</a>
                             <a class="dropdown-item" href="/payment-confirmation">Payment Confirmation</a>
@@ -46,9 +50,6 @@
                     @auth
                     <li class="nav-item">
                         <a href="/profile" class="nav-link">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/logout" class="nav-link btn btn-danger text-light mx-2 rounded-pill">Logout</a>
                     </li>
                     @else
                     <li class="nav-item">

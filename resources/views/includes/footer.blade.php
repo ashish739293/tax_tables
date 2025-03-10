@@ -3,7 +3,7 @@
     <div class="row px-xl-5 pt-5">
         <div class="footer-box col-lg-4 col-md-6 mb-5 text-lg-start text-center">
             <a href="" class="footer-brand text-decoration-none">
-                <h1 class="footer-heading mb-4 display-5 fw-bold text-primary">Tax Tables</h1>
+                <h1 class="footer-heading mb-4 display-5 fw-bold text-primary">Tax Tablet</h1>
             </a>
             <p class="footer-description">
                 Stay ahead during tax season with our expert guidance. We simplify complex tax regulations and provide essential resources for stress-free filing.
@@ -37,7 +37,7 @@
     <div class="row border-top border-light mx-xl-5 py-4">
         <div class="col-md-6 text-center text-md-start">
             <p class="footer-copyright mb-0">
-                &copy; <a class="text-primary fw-bold" href="/">Tax Tables</a>. All Rights Reserved.
+                &copy; <a class="text-primary fw-bold" href="/">Tax Tablet</a>. All Rights Reserved.
             </p>
         </div>
         <!-- <div class="col-md-6 text-center text-md-end">
