@@ -1,5 +1,5 @@
 <div class="container py-5 mt-5">
-    <h1 class="text-left fw-bold mb-5">Create a New Blog</h1>
+    <h2 class="text-left fw-bold mb-5">Create a New Blog</h2>
 
     <div class="row align-items-center">
         <!-- First Column: Image -->

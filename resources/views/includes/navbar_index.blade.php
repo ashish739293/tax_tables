@@ -35,12 +35,12 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
                         <div class="dropdown-menu">
-                            @auth 
+                        @auth 
                              <a href="/logout" class="dropdown-item">Logout</a>
                             @else
                             <a class="dropdown-item" href="/login">Login</a>
                             @endauth
-                            <a class="dropdown-item" href="/password_reset">Password Reset</a>  
+                            <a class="dropdown-item" href="/password_reset">Password Reset</a>
                             <a class="dropdown-item" href="/invoices">My Invoice</a>
                             <a class="dropdown-item" href="/subscriptions">My Subscriptions</a>
                             <a class="dropdown-item" href="/payment-confirmation">Payment Confirmation</a>
@@ -91,7 +91,7 @@
 }
 
 .navbar .nav-link {
-    color: white !important;
+    color: black !important;
     transition: color 0.3s ease;
 }
 
@@ -147,8 +147,8 @@
 }
 
 .navbar-nav .nav-link:hover {
-    color:rgb(19, 14, 14) !important;
-    background: rgba(6, 85, 46, 0.1);
+    color: white !important;
+    background: rgba(6, 38, 85, 0.1);
     border-radius : 15px;
 }
 </style>

@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/income-sources', [IncomeSourceController::class, 'index']);
+Route::get('/services_details', [IncomeSourceController::class, 'index']);
 
 
 Route::resource('services_details', ServiceController::class);

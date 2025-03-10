@@ -11,7 +11,7 @@
 Explore Your Earning Potential: Discover Diverse Income Sources for Financial Growth! 
 </p>
 </div>
-
+@include('includes.modal_form')
 <!-- Cards Container -->
 <div class="container">
 <div class="row mt-4 mb-5 justify-content-center" id="income-cards">
@@ -160,7 +160,9 @@ let cardHTML = `
 <div class="card-body">
 <p class="card-title1">${source.title}</p>
 ${keyPointsHTML}
-<a href="#" class="btn overlay-btn">Let's Start</a>
+<button onclick="OpenModal()" type="button" class="btn overlay-btn" >
+APPLY NOW →
+</button>
 </div>
 </div>
 </div>
