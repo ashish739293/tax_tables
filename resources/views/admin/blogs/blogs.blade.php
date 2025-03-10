@@ -1,6 +1,7 @@
-@include('includes.head', ['title' => '| Blogs'])
-@include('includes.navbar_index')
+@extends('admin.layouts.app')
 
+
+@section('content')
 <!-- Success Message -->
 @if(session('success'))
     <div class="bg-green-500 text-white p-3 rounded mb-4">
@@ -8,7 +9,11 @@
     </div>
 @endif
 
+
+<!-- Create Blogs UI -->
+@include('includes.create')
+
 <!-- Blogs List -->
 @include('includes.blogs', ['blogs' => $blogs])
 
-@include('includes.footer')
+@endsection

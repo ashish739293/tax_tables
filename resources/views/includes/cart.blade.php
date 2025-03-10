@@ -1,4 +1,3 @@
-<!-- Bootstrap & AOS for Animations -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -28,7 +27,7 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         text-align: left;
         height: 480px;
-        transition: all 0.3s ease-in-out;
+        transition: none !important; 
     }
 
     /* Image Container */
@@ -44,6 +43,8 @@
         height: 100%;
         object-fit: cover;
     }
+
+    
 
     /* Overlay for Blur Effect */
     .overlay {
@@ -78,7 +79,7 @@
     /* Button */
     .overlay-btn {
         margin-top: 10px;
-        background: #007bff;
+        background:#007bff;
         border: none;
         padding: 8px 16px;
         border-radius: 15px;
@@ -88,6 +89,7 @@
         text-transform: uppercase;
         text-decoration: none;
     }
+
 
     .overlay-btn:hover {
         background: #ff8800;
@@ -101,7 +103,7 @@
     .card-title1 {
         font-size: 1rem;
         font-weight: bold;
-        color: rgb(21, 68, 221);
+        color:rgb(21, 68, 221);
     }
 
     .key-points {
@@ -119,55 +121,53 @@
 
 <!-- JavaScript to Fetch and Insert Cards Dynamically -->
 <script>
-    // Initialize AOS animations
-    AOS.init();
+    document.addEventListener("DOMContentLoaded",function () {
+    let cardContainer = document.getElementById("income-cards");
 
-    window.onload = function () {
-        let cardContainer = document.getElementById("income-cards");
+    if (!cardContainer) {
+        console.error("Error: Element with ID 'income-cards' not found!");
+        return;
+    }
 
-        if (!cardContainer) {
-            console.error("Error: Element with ID 'income-cards' not found!");
-            return;
-        }
+    fetch('/api/income-sources')
+        .then(response => response.json())
+        .then(data => {
+            cardContainer.innerHTML = ""; 
 
-        fetch('/api/income-sources')
-            .then(response => response.json())
-            .then(data => {
-                cardContainer.innerHTML = ""; 
+            data.forEach((source, index) => {
+                console.log(source);
+                let optionsArray = [];
+                try {
+                    optionsArray = JSON.parse(source.options);
+                } catch (error) {
+                    console.error("Error parsing options:", error);
+                }
 
-                data.forEach((source) => {
-                    let optionsArray = [];
-                    try {
-                        optionsArray = JSON.parse(source.options);
-                    } catch (error) {
-                        console.error("Error parsing options:", error);
-                    }
+                let keyPointsHTML = Array.isArray(optionsArray) && optionsArray.length
+                        ? `<ul class="key-points">${optionsArray.map(point => `<li><i class="fas fa-check-circle text-success me-2"></i> ${point}</li>`).join("")}</ul>` 
+                        : "";
 
-                    let keyPointsHTML = Array.isArray(optionsArray) && optionsArray.length
-                            ? `<ul class="key-points">${optionsArray.map(point => `<li><i class="fas fa-check-circle text-success me-2"></i> ${point}</li>`).join("")}</ul>` 
-                            : "";
-
-                    let cardHTML = `
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="card1" data-aos="fade-up">
-                                <div class="image-container">
-                                    <img src="https://taxtablet.in/wp-content/uploads/2024/05/2-1024x576.png" class="card-img-top" alt="Income Source">
-                                    <div class="overlay">
-                                        <p>Starts from @</p>
-                                        <p class="price">₹ ${source.fees}/-</p>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-title1">${source.title}</p>
-                                    ${keyPointsHTML}
-                                    <a href="#" class="btn overlay-btn">Let's Start</a>
+                let cardHTML = `
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card1">
+                            <div class="image-container">
+                                <img src="https://taxtablet.in/wp-content/uploads/2024/05/2-1024x576.png" class="card-img-top" alt="Income Source">
+                                <div class="overlay">
+                                    <p>Starts from @</p>
+                                    <p class="price">₹ ${source.fees}/-</p>
                                 </div>
                             </div>
+                            <div class="card-body">
+                                <p class="card-title1">${source.title}</p>
+                                ${keyPointsHTML}
+                                <a href="#" class="btn overlay-btn">Let's Start</a>
+                            </div>
                         </div>
-                    `;
-                    cardContainer.innerHTML += cardHTML;
-                });
-            })
-            .catch(error => console.error('Error fetching income sources:', error));
-    };
+                    </div>
+                `;
+                cardContainer.innerHTML += cardHTML;
+            });
+        })
+        .catch(error => console.error('Error fetching income sources:', error));
+});
 </script>

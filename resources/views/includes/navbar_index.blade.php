@@ -30,7 +30,7 @@
                         <a href="/contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/blogs" class="nav-link">Blogs</a>
+                        <a href="/blog" class="nav-link">Blogs</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>

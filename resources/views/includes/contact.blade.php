@@ -14,7 +14,9 @@
         text-decoration: none;
         transition: background-color 0.3s, transform 0.3s;
     }
-
+    .navbar .nav-link {
+        color: white !important
+    }
     .icon:hover {
         background-color: #0056b3;
         transform: scale(1.1);

@@ -137,6 +137,7 @@
         <a href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <a href="/appointments" class="{{ request()->is('appointments') ? 'active' : '' }}"><i class="fas fa-calendar-check"></i> Appointments</a>
         <a href="/services" class="{{ request()->is('services') ? 'active' : '' }}"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/blogs" class="{{ request()->is('blogs') ? 'active' : '' }}"><i class="fas fa-cogs"></i> Blogs</a>
     </div>
 
     <!-- Main Content -->

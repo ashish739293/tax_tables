@@ -8,7 +8,7 @@
 
 <!-- Services Cards Container -->
 <div class="services-cards-container">
-    <div class="row mt-4 mb-5 justify-content-center" id="services-cards">
+    <div class="row m-5 justify-content-center" id="services-cards">
         <!-- Cards will be inserted dynamically -->
     </div>
 </div>

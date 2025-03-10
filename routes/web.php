@@ -10,6 +10,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\BlogController;
 
 /*
 use App\Http\Controllers\LoginController;
@@ -64,15 +65,21 @@ Route::view('password_reset','Auth.email')->middleware('guest')->name('email');
 // Route::post('authenticate',[LoginController::class,'authenticate']);
 
 
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blogs', [BlogController::class, 'admin'])->name('blogs');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+
+
 Route::get('/check-auth', function () {
     return response()->json(['isAuthenticated' => Auth::check()]);
 })->name('check.auth');
 
-Route::get('/blogs', [LoginController::class, 'blogs'])->name('blogs')->middleware('auth');
+// Route::get('/blogs', [LoginController::class, 'blogs'])->name('blogs')->middleware('auth');
 Route::get('/invoices', [LoginController::class, 'invoices'])->name('invoices')->middleware('auth');
 Route::get('/subscriptions', [LoginController::class, 'subscriptions'])->name('subscriptions')->middleware('auth');
 Route::get('/payment-confirmation', [LoginController::class, 'paymentConfirmation'])->name('payment.confirmation')->middleware('auth');
-Route::get('/contact', [LoginController::class, 'contact'])->name('contact')->middleware('auth');
+// Route::get('/contact', [LoginController::class, 'contact'])->name('contact')->middleware('auth');
 
 //============================= Appointment ==========================================
 
