@@ -59,7 +59,12 @@ Route::get('/layout', function () {
 
 // Route::view('index','home')->middleware('auth');
 
-Route::view('login','Auth.login')->middleware('guest')->name('login');
+Route::get('/login', function () {
+    if (Auth::check()) {
+    return redirect('/'); // Redirect logged-in users to home or dashboard
+    }
+    return view('Auth.login');
+    })->middleware('guest')->name('login');
 Route::view('password_reset','Auth.email')->middleware('guest')->name('email');
 
 // Route::post('authenticate',[LoginController::class,'authenticate']);
@@ -113,5 +118,10 @@ Route::post('/services_update/{id}', [ServiceController::class, 'update']);
 Route::post('/services_delete/{id}', [ServiceController::class, 'destroy'])->name('services.destroy');
 
 
+Route::get('/income_details', [IncomeController::class, 'index'])->name('admin.incomes.index');
+Route::get('/admin/income-data', [IncomeController::class, 'getData'])->name('admin.incomes.data');
+
+// Route::get('/admin/income-data', [IncomeController::class, 'getIncomeData'])->name('income.list');
 Route::get('/income-form', [IncomeController::class, 'showForm'])->name('income.form');
 Route::post('/submit-income-form', [IncomeController::class, 'submitForm'])->name('submit.income.form');
+Route::post('/admin/income/update-status/{id}', [IncomeController::class, 'updateStatus'])->name('income.updateStatus');

@@ -204,23 +204,230 @@ function OpenModal(){
         });
     });
 
-    // Submit form via AJAX
-$('#incomeFormStep2').submit(function (e) {
+    $(document).ready(function () {
+    $('input[name="payment_method"]').change(function () {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Reset required attributes
+        $('#bank_receipt, #qr_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+
+        if (selectedMethod === 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', true);
+        } else if (selectedMethod === 'QR') {
+            $('#qr_receipt').prop('required', true);
+        }
+    });
+    $(document).ready(function () {
+    $('input[name="payment_method"]').change(function () {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Reset required attributes
+        $('#bank_receipt, #qr_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+
+        if (selectedMethod === 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', true);
+        } else if (selectedMethod === 'QR') {
+            $('#qr_receipt').prop('required', true);
+        }
+    });
+
+    // Remove validation error on submit
+    $('#incomeFormStep2').submit(function (e) {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Prevent browser validation errors for hidden fields
+        if (selectedMethod !== 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+        }
+        if (selectedMethod !== 'QR') {
+            $('#qr_receipt').prop('required', false);
+        }
+    });
+});$(document).ready(function () {
+    $('input[name="payment_method"]').change(function () {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Reset required attributes
+        $('#bank_receipt, #qr_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+
+        if (selectedMethod === 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', true);
+        } else if (selectedMethod === 'QR') {
+            $('#qr_receipt').prop('required', true);
+        }
+    });
+
+    // Remove validation error on submit
+    $('#incomeFormStep2').submit(function (e) {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Prevent browser validation errors for hidden fields
+        if (selectedMethod !== 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+        }
+        if (selectedMethod !== 'QR') {
+            $('#qr_receipt').prop('required', false);
+        }
+    });
+});$(document).ready(function () {
+    $('input[name="payment_method"]').change(function () {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Reset required attributes
+        $('#bank_receipt, #qr_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+
+        if (selectedMethod === 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', true);
+        } else if (selectedMethod === 'QR') {
+            $('#qr_receipt').prop('required', true);
+        }
+    });
+
+    // Remove validation error on submit
+    $('#incomeFormStep2').submit(function (e) {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Prevent browser validation errors for hidden fields
+        if (selectedMethod !== 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+        }
+        if (selectedMethod !== 'QR') {
+            $('#qr_receipt').prop('required', false);
+        }
+    });
+});$(document).ready(function () {
+    $('input[name="payment_method"]').change(function () {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Reset required attributes
+        $('#bank_receipt, #qr_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+
+        if (selectedMethod === 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', true);
+        } else if (selectedMethod === 'QR') {
+            $('#qr_receipt').prop('required', true);
+        }
+    });
+
+    // Remove validation error on submit
+    $('#incomeFormStep2').submit(function (e) {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Prevent browser validation errors for hidden fields
+        if (selectedMethod !== 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+        }
+        if (selectedMethod !== 'QR') {
+            $('#qr_receipt').prop('required', false);
+        }
+    });
+});$(document).ready(function () {
+    $('input[name="payment_method"]').change(function () {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Reset required attributes
+        $('#bank_receipt, #qr_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+
+        if (selectedMethod === 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', true);
+        } else if (selectedMethod === 'QR') {
+            $('#qr_receipt').prop('required', true);
+        }
+    });
+
+    // Remove validation error on submit
+    $('#incomeFormStep2').submit(function (e) {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Prevent browser validation errors for hidden fields
+        if (selectedMethod !== 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+        }
+        if (selectedMethod !== 'QR') {
+            $('#qr_receipt').prop('required', false);
+        }
+    });
+});
+
+
+
+
+
+    // Remove validation error on submit
+    $('#incomeFormStep2').submit(function (e) {
+        let selectedMethod = $('input[name="payment_method"]:checked').val();
+
+        // Prevent browser validation errors for hidden fields
+        if (selectedMethod !== 'Bank') {
+            $('#bank_receipt, #account_number, #ifsc_code, #account_holder').prop('required', false);
+        }
+        if (selectedMethod !== 'QR') {
+            $('#qr_receipt').prop('required', false);
+        }
+    });
+});
+
+
+    $('#incomeFormStep2').submit(function (e) {
     e.preventDefault();
-    let formData = new FormData(this);
+    
+    let formData = new FormData();
+    
+    // Append Step 1 Data
+    formData.append('name', $('#name').val());
+    formData.append('email', $('#email').val());
+    formData.append('mobile', $('#mobile').val());
+    formData.append('kyc_docs', $('#kyc_docs')[0].files[0]);
+    formData.append('income_proof', $('#income_proof')[0].files[0]);
+    formData.append('other_files', $('#other_files')[0].files[0]);
+
+    // Append Plan Selection
+    $('input[name="plan[]"]:checked').each(function () {
+        formData.append('plan[]', $(this).val());
+    });
+
+    // Append Step 2 Data
+    formData.append('payment_method', $('input[name="payment_method"]:checked').val());
+    
+    let paymentMethod = $('input[name="payment_method"]:checked').val();
+    
+    if (paymentMethod === 'QR') {
+        formData.append('qr_receipt', $('#qr_receipt')[0].files[0]);
+    } else if (paymentMethod === 'Bank') {
+        formData.append('account_number', $('#account_number').val());
+        formData.append('ifsc_code', $('#ifsc_code').val());
+        formData.append('account_holder', $('#account_holder').val());
+        formData.append('bank_receipt', $('#bank_receipt')[0].files[0]);
+    }
+
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+    // Set the CSRF token in the AJAX setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        }
+    });
+
+
+    // Send the data to Laravel Backend
     $.ajax({
-        url: "/submit-income-form",
+        url: "/submit-income-form",  // Laravel route
         type: 'POST',
         data: formData,
         processData: false,
         contentType: false,
-        success: function () {
-            alert('Form Submitted Successfully');
-            location.reload();
+        success: function (response) {
+            showToast(response.message);
+            $('#incomeFormStep2')[0].reset();
+            $('#incomeFormStep1')[0].reset();
+            // Hide/close the modal
+            $('#incomeModal').modal('hide');
         },
         error: function (xhr) {
-            alert('An error occurred: ' + xhr.responseText);
+            showToast('An error occurred: ' + xhr.responseText,"error");
         }
     });
 });
+
 </script>
