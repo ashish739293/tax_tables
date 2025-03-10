@@ -5,7 +5,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
 <!-- Section Header -->
-<div class="container-fluid pt-5 text-center" data-aos="fade-up">
+<div class="container pt-5 text-center" data-aos="fade-up">
 <h2 class="section-title px-5"><span class="px-2">Select Your Income Source</span></h2>
 <p class="text-dark fs-5">
 Explore Your Earning Potential: Discover Diverse Income Sources for Financial Growth! 

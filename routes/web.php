@@ -100,7 +100,8 @@ Route::get('/profile', [UserController::class, 'profile'])->name('profile')->mid
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
-});
+})->middleware('admin');
+
 
 Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
 Route::get('/appointments/fetch', [AppointmentController::class, 'fetchAppointments'])->name('appointments.fetch');
