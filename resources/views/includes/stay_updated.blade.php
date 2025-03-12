@@ -25,7 +25,8 @@
     width: 100%; /* Prevent overflow */
     max-width: 100%;
     height: 100vh;
-    background: url("https://taxtablet.in/wp-content/uploads/2024/05/INCOME-TAX-RETURNS-3.jpg") no-repeat center center/cover;
+    background: url("/image/tax.jpg") no-repeat center center/cover;
+    background: rgba(182, 174, 174, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +49,7 @@
     .hero-content {
         position: relative;
         max-width: 600px;
-        color: #fff;
+        color: rgb(233, 248, 21);
         padding: 20px;
         z-index: 2;
         text-align: center;
@@ -60,7 +61,7 @@
         font-weight: bold;
         line-height: 1.3;
         margin-bottom: 15px;
-        color: #ffffff;
+        color:rgb(136, 123, 123);
     }
 
     .hero-title span {

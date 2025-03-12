@@ -248,7 +248,7 @@
     <div class="form-container">
         <!-- Contact Number Section -->
         <div class="contact-section">
-            📞 Toll Free Call : <strong>+91 94629-29135</strong>
+            📞 Call For Inquiry : </br><strong>+91 94629-29135</strong>
         </div>
 
         <h4>Book Appointment</h4>

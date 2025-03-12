@@ -142,7 +142,10 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success w-100 mt-3">Submit Form</button>
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="button" class="btn btn-danger w-50 me-2" id="backButton">Back</button>
+                            <button type="submit" class="btn btn-success w-50">Submit Form</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -167,6 +170,10 @@ function OpenModal(){
         document.getElementById('step2').style.display = 'block';
     });
 
+    document.getElementById('backButton').addEventListener('click', function () {
+        document.getElementById('step1').style.display = 'block';
+        document.getElementById('step2').style.display = 'none';
+    });
     document.querySelectorAll('input[name="payment_method"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
         let method = this.value;

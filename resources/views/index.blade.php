@@ -11,9 +11,9 @@
     @include('includes.cart')
 </div>
 
-<!-- Category -->
-<div data-aos="fade-down">
-    @include('includes.category')
+<!-- Offer -->
+<div data-aos="fade-left">
+    @include('includes.offer')
 </div>
 
 <!-- Services -->
@@ -21,9 +21,9 @@
     @include('includes.services')
 </div>
 
-<!-- Offer -->
-<div data-aos="fade-left">
-    @include('includes.offer')
+<!-- Category -->
+<div data-aos="fade-down">
+    @include('includes.category')
 </div>
 
 <!-- Trendy Products -->
