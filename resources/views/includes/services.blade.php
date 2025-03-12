@@ -17,6 +17,18 @@ Explore a Range of Services: Unlock the Best Opportunities for Personal Growth a
 
 <style>
 /* Scoped Service Card Styles */
+.service-container{
+    position: relative;
+    background-size: cover;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 50px;
+    color: white;
+}
+
 .services-card .service-card {
 background: white;
 border-radius: 10px;
@@ -150,54 +162,55 @@ max-width: 100%;
 
 <script>
 window.onload = function () {
-let serviceCardContainer = document.getElementById("services-cards");
+    let serviceCardContainer = document.getElementById("services-cards");
 
-if (!serviceCardContainer) {
-console.error("Error: Element with ID 'services-cards' not found!");
-return;
-}
+    if (!serviceCardContainer) {
+        console.error("Error: Element with ID 'services-cards' not found!");
+        return;
+    }
 
-fetch('/api/income-sources') // Changed API endpoint for services
-.then(response => response.json())
-.then(data => { 
-serviceCardContainer.innerHTML = ""; 
+    fetch('/api/services') // Fetching services from backend
+    .then(response => response.json())
+    .then(data => { 
+        serviceCardContainer.innerHTML = ""; 
 
-data.forEach((service) => {
-let optionsArray = [];
-try {
-optionsArray = JSON.parse(service.options);
-} catch (error) {
-console.error("Error parsing options:", error);
-}
+        data.forEach((service) => {
+            let featuresArray = [];
+            try {
+                featuresArray = service.features ? JSON.parse(service.features) : [];
+            } catch (error) {
+                console.error("Error parsing features:", error);
+            }
 
-let keyPointsHTML = Array.isArray(optionsArray) && optionsArray.length
-? `<ul class="service-key-points">${optionsArray.map(point => `<li><i class="fas fa-check-circle text-success me-2"></i> ${point}</li>`).join("")}</ul>` 
-: "";
+            let keyPointsHTML = featuresArray.length
+                ? `<ul class="service-key-points">${featuresArray.map(feature => `<li><i class="fas fa-check-circle text-success me-2"></i> ${feature}</li>`).join("")}</ul>` 
+                : "";
 
-let cardHTML = `
-<div class="services-card col-lg-4 col-md-6 col-sm-12 mb-4">
-<div class="service-card">
-<div class="service-image-container">
-<img src="${service.image_url || 'https://taxtablet.in/wp-content/uploads/2024/05/2-1024x576.png'}" class="service-img-top" alt="Service Image">
-<div class="service-overlay">
-<p>Starts from @</p>
-<p class="service-price">₹ ${service.fees}/-</p>
-</div>
-</div>
-<div class="service-card-body">
-<p class="service-card-title">${service.title}</p>
-${keyPointsHTML}
-<button onclick="OpenModal()" type="button" class="service-overlay-btn" >
-APPLY NOW →
-</button>
-</div>
-</div>
-</div>
-`;
-serviceCardContainer.innerHTML += cardHTML;
-});
-})
-.catch(error => console.error('Error fetching services:', error));
+            let cardHTML = `
+            <div class="services-card col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="service-card">
+                    <div class="service-image-container">
+                        <img src="/storage/${service.image}" class="service-img-top" alt="${service.name}">
+                        <div class="service-overlay">
+                            <p>Starts from @</p>
+                            <p class="service-price">₹ ${service.price}/-</p>
+                        </div>
+                    </div>
+                    <div class="service-card-body">
+                        <p class="service-card-title">${service.name}</p>
+                        ${keyPointsHTML}
+                        <button onclick="OpenModal()" type="button" class="service-overlay-btn">
+                            APPLY NOW →
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `;
+            serviceCardContainer.innerHTML += cardHTML;
+        });
+    })
+    .catch(error => console.error('Error fetching services:', error));
 };
 </script>
+
 

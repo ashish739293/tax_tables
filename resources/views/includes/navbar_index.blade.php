@@ -5,7 +5,7 @@
             <!-- Logo -->
             <a href="/" class="navbar-brand text-uppercase font-weight-bold">
                 <span class="text-primary">
-                    <img src="/image/TabTabletLogo.png" height="40"/>
+                    <img src="/image/logo.png" height="60"/>
                 </span>
             </a>
 

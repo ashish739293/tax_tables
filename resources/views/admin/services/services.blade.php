@@ -157,17 +157,28 @@ $(document).ready(function() {
     // Function to Load Services
     function loadServices() {
         $.get('/services_details', function(data) {
+            console.log(data);
             let servicesHTML = '';
             data.forEach(function(service) {
+                let featuresHTML = '';
+
+                // Check if features exist and are not null
+                if (service.features && Array.isArray(service.features) && service.features.length > 0) {
+                    featuresHTML = `
+                        <ul class="list-unstyled mt-2">
+                            ${service.features.map(feature => `<li>✅ ${feature}</li>`).join('')}
+                        </ul>
+                    `;
+                }
                 servicesHTML += `
                     <div class="col-md-4">
                         <div class="card shadow-sm border-light rounded">
                             <img src="/storage/${service.image}" class="card-img-top rounded-top" alt="${service.name}">
                             <div class="card-body">
                                 <h5 class="card-title text-center text-primary">${service.name}</h5>
-                                <p class="card-text">${service.description}</p>
                                 <p class="card-text text-muted">Price: <strong class="text-success">$${service.price}</strong></p>
-                                <div class="d-flex justify-content-between">
+                                ${featuresHTML} <!-- Features Section -->
+                                <div class="d-flex justify-content-between mt-3">
                                     <button class="btn btn-warning edit-service" data-id="${service.id}">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>

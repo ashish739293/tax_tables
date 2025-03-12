@@ -112,6 +112,11 @@ Route::get('/services', function () {
     return view('admin.services.services');
 });
 
+
+Route::get('/get-services', [ServiceController::class, 'getServicesList']);
+
+Route::get('/api/services', [ServiceController::class, 'getServices']);
+
 Route::get('/services_details', [ServiceController::class, 'index']);
 Route::post('/services_details', [ServiceController::class, 'store']);
 Route::get('/services_details/{id}/edit', [ServiceController::class, 'edit']);

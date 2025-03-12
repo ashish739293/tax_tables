@@ -4,6 +4,7 @@
  .home-container {
     position: relative;
     min-height: 120vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -258,11 +259,8 @@
             <input type="text" name="name" class="form-control" placeholder="Name" required>
             <input type="email" name="email" class="form-control" placeholder="Email" required>
             <input type="text" name="phone" class="form-control" placeholder="Phone" required>
-            <select name="service" class="form-control" required>
+            <select name="service" id="serviceDropdown" class="form-control" required>
                 <option value="">Select Required Service</option>
-                <option value="company register" >Company Register</option>
-                <option value="ITR Filling">ITR Filling</option>
-                <option value="Consultation">Consultation</option>
             </select>
             <!-- Replace the time_slot input with Flatpickr -->
             <input type="text" name="time_slot" id="appointmentDate" class="form-control" placeholder="Select Appointment Date" required>
@@ -311,5 +309,21 @@
         minDate: "today",           // Ensures only today and future dates can be selected
         disableMobile: true,        // Disables mobile browser view of the date picker
         time_24hr: true             // Uses 24-hour format for time selection
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Fetch services from the backend
+        $.get('/get-services', function (data) {
+            let serviceDropdown = $('#serviceDropdown');
+
+            // Append service options dynamically
+            data.forEach(function (service) {
+                serviceDropdown.append(`<option value="${service.id}">${service.name}</option>`);
+            });
+        }).fail(function () {
+            alert("Error loading services!");
+        });
     });
 </script>

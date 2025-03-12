@@ -6,26 +6,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Service;
-use Log;
+
 class ServiceController extends Controller
 {
     // Display a listing of the services
     public function index()
     {
-        $services = Service::all(); // Get all services
-        return response()->json($services); // Return the services as JSON (for AJAX)
+        $services = Service::all()->map(function ($service) {
+            $service->features = json_decode($service->features, true); // Convert JSON to array
+            return $service;
+        });
+
+        return response()->json($services);
     }
 
     // Store a newly created service in the database
     public function store(Request $request)
     {
-
         // Validate the incoming request
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'features' => 'nullable|array', // Validate features as an array
         ]);
 
         // If validation fails, return an error message
@@ -39,15 +42,17 @@ class ServiceController extends Controller
         // Handle the image upload
         $imagePath = $request->file('image')->store('services', 'public');
 
+        // Convert features array to JSON
+        $featuresJson = $request->has('features') ? json_encode($request->features) : null;
+
         // Create a new service record
         $service = Service::create([
             'name' => $request->name,
-            'description' => $request->description,
             'price' => $request->price,
-            'image' => $imagePath
+            'image' => $imagePath,
+            'features' => $featuresJson
         ]);
 
-        // Return a success response with the created service
         return response()->json([
             'status' => 'success',
             'message' => 'Service created successfully',
@@ -58,28 +63,42 @@ class ServiceController extends Controller
     // Show the details of a specific service
     public function show($id)
     {
-        $service = Service::findOrFail($id); // Find service by ID
-        return response()->json($service); // Return service as JSON (useful for AJAX)
+        $service = Service::findOrFail($id);
+        $service->features = json_decode($service->features, true); // Convert JSON to array
+        return response()->json($service);
     }
 
     // Show the form for editing the specified service
     public function edit($id)
     {
-        $service = Service::findOrFail($id); // Find service by ID
-        return response()->json($service); // Return service details for the edit form
+        $service = Service::findOrFail($id);
+        $service->features = json_decode($service->features, true); // Convert JSON to array
+        return response()->json($service);
+    }
+
+    // Show all services names
+    public function getServicesList()
+    {
+        $services = Service::all(['id', 'name']); // Fetch only id & name
+        return response()->json($services);
+    }
+
+    // Show all services
+    public function getServices()
+    {
+        $services = Service::all(); // Fetch all services
+        return response()->json($services);
     }
 
     // Update the specified service in the database
     public function update(Request $request, $id)
     {
-
-
         // Validate the incoming request
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
             'price' => 'required|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'features' => 'nullable|array', // Validate features as an array
         ]);
 
         // If validation fails, return an error message
@@ -104,13 +123,15 @@ class ServiceController extends Controller
             $service->image = $imagePath;
         }
 
+        // Convert features array to JSON
+        $featuresJson = $request->has('features') ? json_encode($request->features) : $service->features;
+
         // Update the service details
         $service->name = $request->name;
-        $service->description = $request->description;
         $service->price = $request->price;
+        $service->features = $featuresJson;
         $service->save();
 
-        // Return a success response with the updated service
         return response()->json([
             'status' => 'success',
             'message' => 'Service updated successfully',
@@ -132,7 +153,6 @@ class ServiceController extends Controller
         // Delete the service record from the database
         $service->delete();
 
-        // Return a success response indicating that the service was deleted
         return response()->json([
             'status' => 'success',
             'message' => 'Service deleted successfully'

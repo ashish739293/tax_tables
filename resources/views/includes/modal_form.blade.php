@@ -164,7 +164,7 @@ function OpenModal(){
 }
 
 
-    // Switch to Step 2 when the next button is clicked
+    // Switch to Step 2 when the next button is clicked 
     document.getElementById('nextStepBtn').addEventListener('click', function () {
         document.getElementById('step1').style.display = 'none';
         document.getElementById('step2').style.display = 'block';
@@ -174,6 +174,7 @@ function OpenModal(){
         document.getElementById('step1').style.display = 'block';
         document.getElementById('step2').style.display = 'none';
     });
+
     document.querySelectorAll('input[name="payment_method"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
         let method = this.value;

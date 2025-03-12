@@ -1,5 +1,5 @@
 <!-- Footer Start -->
-<div class="amazing-footer container-fluid bg-dark text-light mt-5 pt-5">
+<div class="amazing-footer container-fluid bg-dark text-light pt-5">
     <div class="row px-xl-5 pt-5">
         <div class="footer-box col-lg-4 col-md-6 mb-5 text-lg-start text-center">
             <a href="" class="footer-brand text-decoration-none">
