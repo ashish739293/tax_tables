@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class="card mx-auto mb-5 pt-3 pb-3" style="max-width: 450px; background-color:rgb(64, 209, 235); border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+        <div class="card mx-auto mb-5 pt-3 pb-3" style="max-width: 450px; background-color:rgba(64, 172, 235, 0.38); border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
             <div class="pt-3 pb-3 contact-form">
 
             <div>
@@ -79,9 +79,8 @@
                         <input type="text" class="form-control" name="phone" placeholder="Phone" required>
                     </div>
                     <div class="mb-3">
-                        <select class="form-control" required>
-                            <option>ITR FILLING</option>
-                            <option>Consultation</option>
+                        <select class="form-control" id="serviceDropdown" required>
+                            <option value="">Select Required Service</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -132,6 +131,22 @@
                     alert("Something went wrong! Please try again.");
                 }
             });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Fetch services from the backend
+        $.get('/get-services', function (data) {
+            let serviceDropdown = $('#serviceDropdown');
+
+            // Append service options dynamically
+            data.forEach(function (service) {
+                serviceDropdown.append(`<option value="${service.id}">${service.name}</option>`);
+            });
+        }).fail(function () {
+            alert("Error loading services!");
         });
     });
 </script>

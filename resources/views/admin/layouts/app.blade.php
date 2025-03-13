@@ -138,7 +138,8 @@
         <a href="/appointments" class="{{ request()->is('appointments') ? 'active' : '' }}"><i class="fas fa-calendar-check"></i> Appointments</a>
         <a href="/services" class="{{ request()->is('services') ? 'active' : '' }}"><i class="fas fa-cogs"></i> Services</a>
         <a href="/income_details" class="{{ request()->is('income-data') ? 'active' : '' }}"><i class="fas fa-wallet"></i> Income Details</a>
-        <a href="/blogs" class="{{ request()->is('blogs') ? 'active' : '' }}"><i class="fas fa-cogs"></i> Blogs</a>
+        <a href="/blogs" class="{{ request()->is('blogs') ? 'active' : '' }}"><i class="fas fa-newspaper"></i> Blogs</a>
+        <a href="/add_slider" class="{{ request()->is('blogs') ? 'active' : '' }}"><i class="fas fa-newspaper"></i> Add Slider</a>
     </div>
 
     <!-- Main Content -->

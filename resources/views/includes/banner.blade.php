@@ -1,6 +1,4 @@
 <style>
-
-
  .home-container {
     position: relative;
     min-height: 120vh;
@@ -10,6 +8,7 @@
     justify-content: center;
     background: #0000006b; /* Secondary color overlay */
     padding: 40px;
+    overflow: hidden;
 }
 
 .home-container::before {
@@ -24,15 +23,26 @@
     z-index: -1;
 }
 
-.background-video {
+
+#slider {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     z-index: -1;
-    opacity: 0.5; /* Adjust transparency */
+}
+
+.carousel-inner,
+.carousel-item {
+    width: 100%;
+    height: 120vh;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 120vh;
+    object-fit: cover;
 }
 
 
@@ -221,17 +231,36 @@
 
 <div class="home-container">
 
-    <video autoplay muted loop class="background-video">
-        <source src="/video/home.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <!-- Image Slider -->
+    <div id="slider" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/image/about.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="/image/tax.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="/image/aboutUs.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <div class="container">
         <div class="row align-items-center">
             <!-- Left Side Content -->
             <div class="col-md-6 left-section">
-                <h4>📢 Hurry up! Last date is 31st July</h4>
-                <h1>File Your ITR, <span class="typing-text">TODAY</span></h1>
-                <p>🔥 JUST START FROM ₹400 ONLY 🔥</p>
+                <h4>📢 <span id="slider-title">Hurry up! Last date is 31st July</span></h4>
+                <h1><span id="slider-main">File Your ITR, </span><span class="typing-text" id="slider-main-red">TODAY</span></h1>
+                <p>🔥 <span id="slider-footer">JUST START FROM ₹400 ONLY</span> 🔥</p>
 
                 <div class="mt-4">
                     <a class="btn btn-custom btn-transparent11 me-2" href="https://taxtablet.in/account/">
@@ -322,6 +351,24 @@
             data.forEach(function (service) {
                 serviceDropdown.append(`<option value="${service.id}">${service.name}</option>`);
             });
+        }).fail(function () {
+            alert("Error loading services!");
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Fetch services from the backend
+        $.get('/slider', function (data) {
+            console.log("slider data",data);
+            let mainText = data[0].main_text;
+            let words = mainText.split(" "); // Split the main_text into words
+            let lastWord = words.pop(); 
+            let textWithoutLastWord = words.join(" ");
+            $('#slider-title').text(data[0].title);
+            $('#slider-main').text(textWithoutLastWord);
+            $('#slider-main-red').text(lastWord);
+            $('#slider-footer').text(data[0].footer_text);
         }).fail(function () {
             alert("Error loading services!");
         });

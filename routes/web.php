@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeSectionController;
 
 /*
 use App\Http\Controllers\LoginController;
@@ -131,3 +132,16 @@ Route::get('/admin/income-data', [IncomeController::class, 'getData'])->name('ad
 Route::get('/income-form', [IncomeController::class, 'showForm'])->name('income.form');
 Route::post('/submit-income-form', [IncomeController::class, 'submitForm'])->name('submit.income.form');
 Route::post('/admin/income/update-status/{id}', [IncomeController::class, 'updateStatus'])->name('income.updateStatus');
+
+
+
+Route::get('/slider', [HomeSectionController::class, 'show']);
+Route::get('/add_slider', function () {
+    return view('admin.update_home.update_home');
+})->middleware('admin');
+Route::post('/upload-banner', [HomeSectionController::class, 'store']);
+
+
+Route::get('/admin/banner-upload', [HomeSectionController::class, 'create'])->name('admin.banner.upload');
+
+Route::post('/admin/upload-banner', [HomeSectionController::class, 'store'])->name('admin.upload-banner');
