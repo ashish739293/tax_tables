@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('services', function (Blueprint $table) {
+        Schema::create('home_sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->decimal('price', 10, 2);
-            $table->string('image')->nullable();
-            $table->json('features')->nullable(); // Store array as JSON
+            $table->string('footer_text')->nullable();
+            $table->string('image_1')->nullable();
+            $table->string('image_2')->nullable();
+            $table->string('image_3')->nullable();
             $table->timestamps();
+
         });
     }
 
@@ -30,8 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('services', function (Blueprint $table) {
-            $table->text('description')->nullable(); // Add back the column if rollback is needed
-        });
+        Schema::dropIfExists('home_sections');
     }
 };

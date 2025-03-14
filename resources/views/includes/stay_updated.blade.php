@@ -11,7 +11,7 @@
                 With ever-changing tax laws and regulations, it’s easy to feel overwhelmed by the complexities of filing taxes.
                 This is where tax consultants shine as indispensable partners in financial management.
             </p>
-            <a href="#" class="btn-primary">Read More</a>
+            <a href="#" class="btn-primary1">Read More</a>
         </div>
     </div>
 </div>
@@ -75,7 +75,7 @@
 }
 
 /* Button */
-.btn-primary {
+.btn-primary1 {
     display: inline-block;
     background: #25D366;
     color: white;
@@ -88,7 +88,7 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.btn-primary:hover {
+.btn-primary1:hover {
     background: #1EBE5C;
     transform: scale(1.05);
 }
@@ -114,7 +114,7 @@
         font-size: 16px;
     }
 
-    .btn-primary {
+    .btn-primary1 {
         font-size: 16px;
         padding: 12px 24px;
     }
@@ -134,7 +134,7 @@
         font-size: 14px;
     }
 
-    .btn-primary {
+    .btn-primary1 {
         font-size: 14px;
         padding: 10px 20px;
     }
