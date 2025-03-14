@@ -1,11 +1,11 @@
 <!-- Navbar Start -->
 <header id="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light py-3 fixed-top custom-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light p-3 fixed-top custom-navbar">
         <div class="container-fluid px-xl-5">
             <!-- Logo -->
             <a href="/" class="navbar-brand text-uppercase font-weight-bold">
                 <span class="text-primary">
-                    <img src="/image/logo.png" height="60"/>
+                    <img src="/image/TabTabletLogo.png" height="40"/>
                 </span>
             </a>
 
@@ -35,12 +35,12 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
                         <div class="dropdown-menu">
-                        @auth 
+                            @auth 
                              <a href="/logout" class="dropdown-item">Logout</a>
                             @else
                             <a class="dropdown-item" href="/login">Login</a>
                             @endauth
-                            <a class="dropdown-item" href="/password_reset">Password Reset</a>
+                            <a class="dropdown-item" href="/password_reset">Password Reset</a>  
                             <a class="dropdown-item" href="/invoices">My Invoice</a>
                             <a class="dropdown-item" href="/subscriptions">My Subscriptions</a>
                             <a class="dropdown-item" href="/payment-confirmation">Payment Confirmation</a>
@@ -147,8 +147,8 @@
 }
 
 .navbar-nav .nav-link:hover {
-    color: white !important;
-    background: rgba(6, 38, 85, 0.1);
+    color:rgb(19, 14, 14) !important;
+    background: rgba(6, 85, 46, 0.1);
     border-radius : 15px;
 }
 </style>

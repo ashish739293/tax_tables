@@ -1,4 +1,3 @@
-
 <style>
     .consultation-section {
         position: relative;
@@ -8,10 +7,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: left;
-        padding: 50px;
+        text-align: center;
+        padding: 50px 20px;
         color: white;
+        flex-direction: column;
     }
+
     .consultation-overlay {
         position: absolute;
         top: 0;
@@ -20,34 +21,85 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
     }
+
     .consultation-content {
         position: relative;
         max-width: 700px;
         z-index: 2;
+        text-align: center;
+        padding: 20px;
     }
+
     .consultation-content h2 {
         font-size: 36px;
         font-weight: bold;
         color: #1E90FF; /* Blue heading */
+        margin-bottom: 15px;
     }
+
     .consultation-content p {
         font-size: 18px;
         margin-bottom: 20px;
+        line-height: 1.6;
     }
+
     .btn-whatsapp {
-        background-color: #007bff;
+        background-color: #25D366;
         color: white;
         font-size: 18px;
-        padding: 12px 24px;
+        padding: 14px 28px;
         border-radius: 30px;
         text-decoration: none;
         display: inline-block;
         font-weight: bold;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
+        transition: all 0.3s ease-in-out;
     }
+
     .btn-whatsapp:hover {
-        background-color: #0056b3;
+        background-color: #1EBE5C;
+        transform: scale(1.05);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .consultation-section {
+            padding: 40px 15px;
+            min-height: 350px;
+        }
+
+        .consultation-content h2 {
+            font-size: 28px;
+        }
+
+        .consultation-content p {
+            font-size: 16px;
+        }
+
+        .btn-whatsapp {
+            font-size: 16px;
+            padding: 12px 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .consultation-section {
+            padding: 30px 10px;
+            min-height: 300px;
+        }
+
+        .consultation-content h2 {
+            font-size: 24px;
+        }
+
+        .consultation-content p {
+            font-size: 14px;
+        }
+
+        .btn-whatsapp {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
     }
 </style>
 
@@ -58,7 +110,7 @@
         <p>Tap into our tax expertise with a free consultation from our team of experts. 
            Let us guide you through your tax concerns and maximize your returns!</p>
         <a href="https://wa.link/z5h1qf" class="btn-whatsapp">
-            Whats App Now
+            WhatsApp Now
         </a>
     </div>
 </div>

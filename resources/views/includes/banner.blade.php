@@ -140,6 +140,7 @@
     background: rgba(39, 228, 14, 0.57) !important;
     color: #fff !important;
     border: 2px solid #fff !important;
+    margin-top:10px;
 }
 
 .home-container .btn.btn-custom.btn-whatsapp11:hover {
@@ -186,6 +187,9 @@
         width: 100%;
         margin-top: 20px;
         max-width: 90%;
+    }
+    .home-container .btn.btn-custom.btn-whatsapp11 {
+     margin-top:10px;
     }
 }
 

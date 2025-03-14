@@ -1,5 +1,5 @@
 <!-- Section Header for Services Page -->
-<div class="container-fluid pt-5 text-center" data-aos="fade-up">
+<div class="container-fluid pt-5 text-center">
 <h2 class="services-title px-5"><span class="px-2">Select Your Service</span></h2>
 <p class="services-description text-dark fs-5">
 Explore a Range of Services: Unlock the Best Opportunities for Personal Growth and Success!
@@ -158,6 +158,19 @@ max-width: 100%;
 }
 }
 
+/* Initial State (Hidden) */
+.services-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible State */
+.services-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 </style>
 
 <script>
@@ -208,9 +221,28 @@ window.onload = function () {
             `;
             serviceCardContainer.innerHTML += cardHTML;
         });
+
+        // After adding elements, trigger scroll animation
+        animateOnScroll();
     })
     .catch(error => console.error('Error fetching services:', error));
 };
+
+// Function to add animation on scroll
+function animateOnScroll() {
+    const cards = document.querySelectorAll(".services-card");
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target); // Stop observing once shown
+            }
+        });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+}
+
 </script>
 
 

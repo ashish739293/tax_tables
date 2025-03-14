@@ -1,6 +1,7 @@
 <div class="hero-section1">
+    <div class="hero-overlay"></div>
     <div class="container">
-        <div class="hero-content">
+        <div class="hero-content11">
             <h1 class="hero-title">
                 The Value of Tax Consultants:<br>
                 <span>Simplifying Complexity, Maximizing Returns</span>
@@ -20,46 +21,46 @@
 .hero-section1 {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background: url("/image/tax.jpg") no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow: hidden;
+    padding: 5%;
 }
 
-/* Blurred Overlay */
-.hero-section1::before {
-    content: "";
+/* Dark Overlay */
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: inherit; /* Inherits the background image */
-    filter: blur(5px); /* Apply blur effect */
-    z-index: 1; /* Keeps the overlay behind the content */
+    background: rgba(0, 0, 0, 0.6); /* Darker for better readability */
 }
 
 /* Content */
-.hero-content {
+.hero-content11 {
     position: relative;
-    max-width: 600px;
+    max-width: 700px;
     color: white;
-    padding: 20px;
+    padding: 30px;
     z-index: 2;
     text-align: center;
-    backdrop-filter: blur(5px); /* Adds additional blur effect */
+    background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
 }
 
 /* Title */
 .hero-title {
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(28px, 4vw, 42px);
     font-weight: bold;
     line-height: 1.3;
     margin-bottom: 15px;
-    color: rgb(136, 123, 123);
+    color: #f8f9fa; /* Slightly off-white for better readability */
 }
 
 .hero-title span {
@@ -68,7 +69,7 @@
 
 /* Text */
 .hero-text {
-    font-size: clamp(16px, 2vw, 18px);
+    font-size: clamp(16px, 2vw, 20px);
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -76,38 +77,57 @@
 /* Button */
 .btn-primary {
     display: inline-block;
-    background: #007bff;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 5px;
+    background: #25D366;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 30px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    transition: background 0.3s ease-in-out;
-    z-index: 3;
-    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-    background: #0056b3;
+    background: #1EBE5C;
+    transform: scale(1.05);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .hero-section1 {
-        height: auto;
+        min-height: 80vh;
         padding: 10% 5%;
         text-align: center;
     }
 
-    .hero-content {
-        max-width: 90%;
+    .hero-content11 {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .hero-title {
+        font-size: 26px;
+    }
+
+    .hero-text {
+        font-size: 16px;
+    }
+
+    .btn-primary {
+        font-size: 16px;
+        padding: 12px 24px;
     }
 }
 
 @media (max-width: 480px) {
+    .hero-section1 {
+        min-height: 70vh;
+        padding: 15% 5%;
+    }
+
     .hero-title {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .hero-text {
@@ -115,8 +135,8 @@
     }
 
     .btn-primary {
-        padding: 10px 20px;
         font-size: 14px;
+        padding: 10px 20px;
     }
 }
 
