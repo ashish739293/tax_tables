@@ -12,7 +12,7 @@
 
 <!-- Offer -->
 
-    @include('includes.offer')
+    @include('components.about.offer')
 
 
 <!-- Services -->

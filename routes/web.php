@@ -12,6 +12,8 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeSectionController;
+use App\Http\Controllers\RatingController;
+
 
 /*
 use App\Http\Controllers\LoginController;
@@ -37,6 +39,10 @@ Route::get('/', function () {
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/about', function () {
+    return view('about');
 });
 
 
@@ -67,7 +73,7 @@ Route::get('/login', function () {
     return view('Auth.login');
     })->middleware('guest')->name('login');
 Route::view('password_reset','Auth.email')->middleware('guest')->name('email');
-
+Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
 // Route::post('authenticate',[LoginController::class,'authenticate']);
 
 
@@ -145,3 +151,10 @@ Route::post('/upload-banner', [HomeSectionController::class, 'store']);
 Route::get('/admin/banner-upload', [HomeSectionController::class, 'create'])->name('admin.banner.upload');
 
 Route::post('/admin/upload-banner', [HomeSectionController::class, 'store'])->name('admin.upload-banner');
+
+Route::post('/submit-rating', [RatingController::class, 'submit'])->name('submit.rating');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/rate-us', [RatingController::class, 'store'])->name('ratings.store');
+});
+Route::get('/ratings', [RatingController::class, 'getRatings']);

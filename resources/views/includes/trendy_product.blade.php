@@ -50,7 +50,7 @@
         font-size: 20px;
         font-weight: bold;
         color: #05d69f;
-        margin-bottom: 5px;
+        margin-bottom: 20px;
     }
     .client-card p {
         font-size: 16px;
@@ -91,9 +91,10 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        fetch("{{ asset('data/clients.json') }}")
+        fetch("/ratings")
             .then(response => response.json())
             .then(clients => {
+                console.log("clients===>",clients);
                 let clientsContainer = document.getElementById("clients-container");
 
                 clients.forEach(client => {
@@ -104,9 +105,8 @@
                     card.innerHTML = `
                         <div class="client-card">
                             <div class="star-rating">${stars}</div>
-                            <h4>${client.name}</h4>
-                            <p><strong>${client.company}</strong></p>
-                            <p>${client.description}</p>
+                            <h4>${client.user_name}</h4>
+                            <p>${client.comment}</p>
                         </div>
                     `;
                     clientsContainer.appendChild(card);

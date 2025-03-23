@@ -17,21 +17,62 @@
             <!-- Navbar Items -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                 <ul class="navbar-nav">
+                    <!-- Home Menu -->
                     <li class="nav-item">
                         <a href="/" class="nav-link">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">Services</a>
+
+                    <!-- Services Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="servicesDropdown" role="button">Services</a>
+                        <div class="dropdown-menu mega-menu p-3">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h6 class="dropdown-header">Accounting Solutions</h6>
+                                    <a class="dropdown-item" href="#">Accounting Outsourcing</a>
+                                    <a class="dropdown-item" href="#">Accounts Payable</a>
+                                    <a class="dropdown-item" href="#">Accounts Receivable</a>
+                                    <a class="dropdown-item" href="#">Financial Reporting</a>
+                                    <a class="dropdown-item" href="#">Payroll Outsourcing</a>
+                                    <a class="dropdown-item" href="#">Invoice Processing</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="dropdown-header">Software Expertise</h6>
+                                    <a class="dropdown-item" href="#">QuickBooks Accounting</a>
+                                    <a class="dropdown-item" href="#">Xero Accounting</a>
+                                    <a class="dropdown-item" href="#">Zoho Books Accounting</a>
+                                    <a class="dropdown-item" href="#">Tally Accounting</a>
+                                    <a class="dropdown-item" href="#">MS Dynamics Accounting</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6 class="dropdown-header">Accounting For</h6>
+                                    <a class="dropdown-item" href="#">Ecommerce</a>
+                                    <a class="dropdown-item" href="#">Healthcare</a>
+                                    <a class="dropdown-item" href="#">Hospitality</a>
+                                    <a class="dropdown-item" href="#">Legal</a>
+                                    <a class="dropdown-item" href="#">Media & Marketing</a>
+                                    <a class="dropdown-item" href="#">Real Estate</a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
+
+                    <!-- Virtual Account Menu -->
                     <li class="nav-item">
                         <a href="/" class="nav-link">Virtual Account</a>
                     </li>
+
+                    <!-- Contact Menu -->
                     <li class="nav-item">
                         <a href="/contact" class="nav-link">Contact</a>
                     </li>
+
+                    <!-- Blogs Menu -->
                     <li class="nav-item">
                         <a href="/blog" class="nav-link">Blogs</a>
                     </li>
+
+                    <!-- Account Dropdown -->
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
                         <div class="dropdown-menu">
@@ -47,10 +88,14 @@
                             <a class="dropdown-item" href="/contact">Contact</a>
                         </div>
                     </li>
+
+                    <!-- Profile Menu with Authentication -->
                     @auth
                     <li class="nav-item">
                         <a href="/profile" class="nav-link">Profile</a>
                     </li>
+
+                    <!-- Appointment Menu -->
                     @else
                     <li class="nav-item">
                         <a href="https://wa.link/z5h1qf" class="nav-link btn text-light mx-2 rounded-pill" style="background: #05d69f;">Appointment</a>
@@ -112,6 +157,48 @@
     display: block;
 }
 
+/* Services Dropdown CSS */
+.mega-menu {
+    width: 600px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mega-menu .row {
+    width: 100%;
+    margin: 0;
+}
+
+.mega-menu .dropdown-header {
+    font-weight: bold;
+    color: #333;
+}
+
+.mega-menu .dropdown-item {
+    padding: 5px 15px;
+}
+
+.mega-menu .dropdown-item:hover {
+    background-color: rgba(6, 85, 46, 0.1);
+    border-radius: 5px;
+}
+
+/* General dropdown styles */
+.navbar-nav .dropdown-menu {
+    display: none; /* Ensure it's hidden initially */
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Show only the hovered dropdown */
+.nav-item.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
 /* Mobile menu styles */
 @media (max-width: 992px) {
     .navbar-nav {
@@ -132,6 +219,17 @@
         position: static;
         width: 100%;
         text-align: center;
+    }
+
+    .navbar-nav .dropdown-menu {
+        display: none;
+        position: static;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-item.dropdown.show .dropdown-menu {
+        display: block;
     }
 }
 
@@ -205,6 +303,52 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+// Handle Services Dropdown by JS
+document.addEventListener("DOMContentLoaded", function () {
+    let dropdowns = document.querySelectorAll(".nav-item.dropdown");
+
+    dropdowns.forEach(dropdown => {
+        let dropdownToggle = dropdown.querySelector(".nav-link.dropdown-toggle");
+        let dropdownMenu = dropdown.querySelector(".dropdown-menu");
+
+        // Desktop hover effect
+        if (window.innerWidth > 992) {
+            dropdown.addEventListener("mouseenter", function () {
+                dropdownMenu.style.display = "block";
+            });
+
+            dropdown.addEventListener("mouseleave", function () {
+                dropdownMenu.style.display = "none";
+            });
+        }
+
+        // Mobile click effect
+        dropdownToggle.addEventListener("click", function (e) {
+            if (window.innerWidth <= 992) {
+                e.preventDefault();
+                let isOpen = dropdown.classList.contains("show");
+
+                // Close all other dropdowns
+                dropdowns.forEach(d => d.classList.remove("show"));
+
+                // Toggle the clicked dropdown
+                if (!isOpen) {
+                    dropdown.classList.add("show");
+                }
+            }
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function (e) {
+        if (!e.target.closest(".nav-item.dropdown")) {
+            dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
+        }
+    });
+});
+
+
 
 // Logout with AJAX
 $(document).ready(function () {
