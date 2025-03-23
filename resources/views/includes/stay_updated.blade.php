@@ -77,7 +77,7 @@
 /* Button */
 .btn-primary1 {
     display: inline-block;
-    background: #25D366;
+    background:rgba(5, 214, 158, 0.85);
     color: white;
     padding: 14px 28px;
     border-radius: 30px;
@@ -89,7 +89,7 @@
 }
 
 .btn-primary1:hover {
-    background: #1EBE5C;
+    background: #05d69f;
     transform: scale(1.05);
 }
 

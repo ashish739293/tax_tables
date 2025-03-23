@@ -1,7 +1,7 @@
 <style>
 
 .modal-header {
-    border-bottom: 3px solid #007bff;
+    border-bottom: 3px solid #05d69f;
 }
 
 .progress {
@@ -12,7 +12,7 @@
 }
 
 .progress-bar {
-    background: #007bff;
+    background: #05d69f;
     font-size: 12px;
     font-weight: bold;
     text-align: center;
@@ -30,7 +30,7 @@
 }
 
 .btn-outline-secondary:hover {
-    background-color: #007bff;
+    background-color: #05d69f;
     color: white;
 }
 

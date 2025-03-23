@@ -19,6 +19,9 @@
 
     @include('includes.services')
 
+<!-- Virtual Accountant -->
+
+    @include('includes.virtualAcount')
 
 <!-- Category -->
 

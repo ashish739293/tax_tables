@@ -3,14 +3,14 @@
     <div class="row px-xl-5 pt-5">
         <div class="footer-box col-lg-4 col-md-6 mb-5 text-lg-start text-center">
             <a href="" class="footer-brand text-decoration-none">
-                <h1 class="footer-heading mb-4 display-5 fw-bold text-primary">Tax Tablet</h1>
+                <h1 class="footer-heading mb-4 display-5 fw-bold " style="color: #05d69f;">Tax Tablet</h1>
             </a>
             <p class="footer-description">
                 Stay ahead during tax season with our expert guidance. We simplify complex tax regulations and provide essential resources for stress-free filing.
             </p>
-            <p class="footer-contact"><i class="fas fa-map-marker-alt text-primary me-2"></i>123 Street, New York, USA</p>
-            <p class="footer-contact"><i class="fas fa-envelope text-primary me-2"></i>info@example.com</p>
-            <p class="footer-contact"><i class="fas fa-phone-alt text-primary me-2"></i>+012 345 67890</p>
+            <p class="footer-contact"><i class="fas fa-map-marker-alt  me-2" style="color: #05d69f;"></i>123 Street, New York, USA</p>
+            <p class="footer-contact"><i class="fas fa-envelope  me-2" style="color: #05d69f;"></i>info@example.com</p>
+            <p class="footer-contact"><i class="fas fa-phone-alt me-2" style="color: #05d69f;"></i>+012 345 67890</p>
         </div>
         <div class="footer-box col-lg-4 col-md-6 mb-5 text-lg-start text-center">
             <h5 class="footer-heading text-light mb-4">Quick Links</h5>
@@ -30,14 +30,14 @@
                 <div class="footer-input-group mb-3">
                     <input type="email" class="footer-input form-control" placeholder="Your Email" required />
                 </div>
-                <button class="footer-btn btn btn-primary w-100" type="submit">Subscribe Now</button>
+                <button class="footer-btn btn  w-100" style="background: #05d69f;" type="submit">Subscribe Now</button>
             </form>
         </div>
     </div>
     <div class="row border-top border-light mx-xl-5 py-4">
         <div class="col-md-6 text-center text-md-start">
             <p class="footer-copyright mb-0">
-                &copy; <a class="text-primary fw-bold" href="/">Tax Tablet</a>. All Rights Reserved.
+                &copy; <a class=" fw-bold" style="color: #05d69f;" href="/">Tax Tablet</a>. All Rights Reserved.
             </p>
         </div>
         <!-- <div class="col-md-6 text-center text-md-end">
@@ -48,7 +48,7 @@
 <!-- Footer End -->
 
 <!-- Back to Top -->
-<a href="#" class="footer-back-top btn btn-primary "><i class="fas fa-chevron-up"></i></a>
+<a href="#" class="footer-back-top btn " style="background: #05d69f;"><i class="fas fa-chevron-up"></i></a>
 
 <!-- Custom Footer CSS -->
 <style>
@@ -91,14 +91,14 @@
         bottom: 25px;
         right: 25px;
         display: none;
-        width: 55px;
-        height: 55px;
+        width: 47px;
+        height: 45px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 22px;
         background:rgb(7, 94, 255);
-        color: #000;
+        color: #fff;
     }
     .footer-back-top:hover {
         background:rgb(0, 60, 224);

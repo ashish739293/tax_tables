@@ -49,7 +49,7 @@
     .client-card h4 {
         font-size: 20px;
         font-weight: bold;
-        color: #007bff;
+        color: #05d69f;
         margin-bottom: 5px;
     }
     .client-card p {

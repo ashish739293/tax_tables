@@ -56,7 +56,7 @@
     }
 
     .whatsapp-button {
-        background: #25d366;
+        background: #05d69f;
         border: none;
         padding: 12px 18px;
         font-size: 14px;

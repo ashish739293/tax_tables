@@ -13,7 +13,7 @@
     </div>
     
     <div class="text-center mt-3" id="viewMoreButtonContainer">
-        <button class="btn btn-primary" id="viewMoreButton" onclick="toggleViewMore()">View More</button>
+        <button class="btn" style="background: #05d69f;" id="viewMoreButton" onclick="toggleViewMore()">View More</button>
     </div>
 </div>
 @endsection

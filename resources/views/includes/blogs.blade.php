@@ -18,7 +18,8 @@
                         <p class="card-text">{{ Str::limit($blog->content, 150) }}</p>
 
                         <!-- Read More Button (Triggers Modal) -->
-                        <button class="btn btn-primary btn-sm" 
+                        <button class="btn btn-sm" 
+                                style="background: #05d69f;"
                                 data-bs-toggle="modal" 
                                 data-bs-target="#blogModal{{ $blog->id }}">
                             Read More →

@@ -33,7 +33,7 @@
     content: "";
     width: 80px;
     height: 4px;
-    background: #007bff;
+    background: #05d69f;
     display: block;
     margin-top: 5px;
 }
@@ -52,7 +52,7 @@
 }
 
 .about-text .btn-learn {
-    background-color: #007bff;
+    background-color: #05d69f;
     color: white;
     font-size: 18px;
     padding: 12px 24px;

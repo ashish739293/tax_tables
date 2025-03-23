@@ -78,7 +78,7 @@ border-radius: 5px;
 /* Button */
 .overlay-btn {
 margin-top: 10px;
-background: #007bff;
+background: #05d69f;
 border: none;
 padding: 8px 16px;
 border-radius: 15px;

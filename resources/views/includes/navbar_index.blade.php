@@ -53,7 +53,7 @@
                     </li>
                     @else
                     <li class="nav-item">
-                        <a href="https://wa.link/z5h1qf" class="nav-link btn btn-primary text-light mx-2 rounded-pill">Appointment</a>
+                        <a href="https://wa.link/z5h1qf" class="nav-link btn text-light mx-2 rounded-pill" style="background: #05d69f;">Appointment</a>
                     </li>
                     @endauth
                 </ul>
@@ -91,7 +91,7 @@
 }
 
 .navbar .nav-link {
-    color: black !important;
+    color: white !important;
     transition: color 0.3s ease;
 }
 

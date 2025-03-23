@@ -126,7 +126,7 @@ margin-bottom: 5px;
 
 /* Button */
 .services-card .service-overlay-btn {
-background: #007bff;
+background: #05d69f;
 border: none;
 padding: 8px 16px;
 border-radius: 25px;

@@ -267,7 +267,7 @@
                 <p>🔥 <span id="slider-footer">JUST START FROM ₹400 ONLY</span> 🔥</p>
 
                 <div class="mt-4">
-                    <a class="btn btn-custom btn-transparent11 me-2" href="https://taxtablet.in/account/">
+                    <a class="btn btn-custom btn-transparent11 me-2" href="/login">
                         <i class="fas fa-user"></i> Account Login
                     </a>
                     <a class="btn btn-custom btn-whatsapp11" href="https://wa.link/z5h1qf">
@@ -299,7 +299,7 @@
             <input type="text" name="time_slot" id="appointmentDate" class="form-control" placeholder="Select Appointment Date" required>
             <textarea type="text" name="message" class="form-control" placeholder="Message"></textarea>
             <!-- <button type="submit" class="btn btn-primary form-control">Send Message</button> -->
-            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+            <button type="submit" class="btn text-white  w-100" style="background: #05d69f;" >Send Message</button>
 
         </form>
     </div>

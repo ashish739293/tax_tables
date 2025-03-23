@@ -104,7 +104,7 @@
     transition: 0.3s;
 }
 .btn-toggle.active {
-    background: rgb(80, 63, 233);
+    background: #05d69f;
     color: black;
 }
 

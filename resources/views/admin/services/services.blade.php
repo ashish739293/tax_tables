@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between mb-4">
     <h3>Manage Services</h3>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCardModal">
+    <button class="btn " style="background: #05d69f;" data-bs-toggle="modal" data-bs-target="#createCardModal">
         <i class="fas fa-plus-circle"></i> Add New Service
     </button>
 </div>
