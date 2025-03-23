@@ -64,7 +64,7 @@
 }
 
 .hero-title span {
-    color: #4cb9ff;
+    color: #05d69f;
 }
 
 /* Text */

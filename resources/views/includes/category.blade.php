@@ -33,7 +33,7 @@
     .consultation-content h2 {
         font-size: 36px;
         font-weight: bold;
-        color: #1E90FF; /* Blue heading */
+        color: #05d69f; /* Blue heading */
         margin-bottom: 15px;
     }
 

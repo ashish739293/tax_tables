@@ -107,7 +107,7 @@ flex-grow: 1;
 .services-card .service-card-title {
 font-size: 1.25rem;
 font-weight: bold;
-color: rgb(21, 68, 221);
+color: #3181f6;
 margin-bottom: 15px;
 }
 
