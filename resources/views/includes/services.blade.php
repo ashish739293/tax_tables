@@ -95,7 +95,7 @@ font-size: 1.5rem;
 font-weight: bold;
 padding: 5px 10px;
 border-radius: 5px;
-background-color: #ff8800;
+background-color: #05D697;
 }
 
 /* Service Card Body */
@@ -140,7 +140,7 @@ transition: background-color 0.3s ease;
 }
 
 .services-card .service-overlay-btn:hover {
-background: #ff8800;
+background:rgb(4, 221, 131);
 }
 
 /* Responsive Layout */

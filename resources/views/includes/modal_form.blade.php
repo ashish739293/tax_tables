@@ -48,8 +48,8 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title fw-bold" id="incomeModalLabel">Income Source Form</h5>
+            <div class="modal-header  text-white" style="background: #05d69f;" >
+                <h5 class="modal-title fw-bold" id="incomeModalLabel" >Income Source Form</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -102,7 +102,7 @@
                             </div>
                         </div>
 
-                        <button type="button" class="btn btn-primary w-100 mt-4" id="nextStepBtn">Next Step →</button>
+                        <button type="button" class="btn  w-100 mt-4" id="nextStepBtn" style="background: #05d69f;">Next Step →</button>
                     </form>
                 </div>
 
