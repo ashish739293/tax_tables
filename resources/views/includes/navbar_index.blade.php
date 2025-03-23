@@ -81,7 +81,6 @@
                             @else
                             <a class="dropdown-item" href="/login">Login</a>
                             @endauth
-                            <a class="dropdown-item" href="/password_reset">Password Reset</a>  
                             <a class="dropdown-item" href="/invoices">My Invoice</a>
                             <a class="dropdown-item" href="/subscriptions">My Subscriptions</a>
                             <a class="dropdown-item" href="/payment-confirmation">Payment Confirmation</a>
@@ -157,9 +156,10 @@
     display: block;
 }
 
+
 /* Services Dropdown CSS */
 .mega-menu {
-    width: 600px;
+    width: 620px;
     background: white;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -168,6 +168,7 @@
 .mega-menu .row {
     width: 100%;
     margin: 0;
+    margin-right:30px;
 }
 
 .mega-menu .dropdown-header {
@@ -312,9 +313,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let dropdownToggle = dropdown.querySelector(".nav-link.dropdown-toggle");
         let dropdownMenu = dropdown.querySelector(".dropdown-menu");
 
-        // Desktop hover effect
+        // Desktop hover effect (prevent multiple dropdowns opening)
         if (window.innerWidth > 992) {
             dropdown.addEventListener("mouseenter", function () {
+                closeAllDropdowns();
                 dropdownMenu.style.display = "block";
             });
 
@@ -329,24 +331,36 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.preventDefault();
                 let isOpen = dropdown.classList.contains("show");
 
-                // Close all other dropdowns
-                dropdowns.forEach(d => d.classList.remove("show"));
+                // Close all other dropdowns first
+                closeAllDropdowns();
 
                 // Toggle the clicked dropdown
                 if (!isOpen) {
                     dropdown.classList.add("show");
+                    dropdownMenu.style.display = "block";
                 }
             }
         });
     });
 
-    // Close dropdowns when clicking outside
+    // Close all dropdowns when clicking outside
     document.addEventListener("click", function (e) {
         if (!e.target.closest(".nav-item.dropdown")) {
-            dropdowns.forEach(dropdown => dropdown.classList.remove("show"));
+            closeAllDropdowns();
         }
     });
+
+    function closeAllDropdowns() {
+        document.querySelectorAll(".nav-item.dropdown").forEach(dropdown => {
+            dropdown.classList.remove("show");
+            let menu = dropdown.querySelector(".dropdown-menu");
+            if (menu) {
+                menu.style.display = "none";
+            }
+        });
+    }
 });
+
 
 
 
