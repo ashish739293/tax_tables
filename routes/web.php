@@ -76,6 +76,8 @@ Route::view('password_reset','Auth.email')->middleware('guest')->name('email');
 Route::view('forget_password','Auth.forget_password')->middleware('guest')->name('forget_password');
 Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('password.update');
 Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
+Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('user.updateProfile');
+Route::delete('/delete-account', [UserController::class, 'deleteAccount'])->name('user.deleteAccount');
 // Route::post('authenticate',[LoginController::class,'authenticate']);
 
 

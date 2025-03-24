@@ -117,7 +117,12 @@
                 <li class="list-group-item active">Account</li>
                 <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#updatePasswordModal">Change Password</a></li>
                 <li class="list-group-item"><a href="#">Privacy</a></li>
-                <li class="list-group-item text-danger"><a href="#">Delete Account</a></li>
+                <li class="list-group-item text-danger"><a href="#" onclick="confirmDelete(event)">Delete Account</a>
+                    <form id="delete-account-form" action="{{ route('user.deleteAccount') }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </li>
                 <li class="list-group-item text-danger"><a href="/logout">Logout</a></li>
             </ul>
         </div>
@@ -127,7 +132,7 @@
             <div id="profile" class="tab-content active">
                 <div class="card p-4">
                     <h4 class="text-warning">Account</h4>
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('user.updateProfile') }}">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Username</label>
@@ -208,6 +213,11 @@
     </div>
 </div>
 
+<!-- Toast Container -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+    <div id="toastContainer"></div>
+</div>
+
 <!-- Update Password Modal -->
 <div class="modal fade" id="updatePasswordModal" tabindex="-1" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -268,16 +278,25 @@
         .then(response => response.json())
         .then(data => {
             if (data.message) {
-                alert(data.message);
+                showToast('success', data.message);
                 location.reload(); // Reload page after success
             } else {
-                alert(data.error);
+                showToast('error', data.error);
             }
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error =>  showToast('error', "Something went wrong!"));
     });
 </script>
 
+<!-- Delete The Account -->
+<script>
+    function confirmDelete(event) {
+        event.preventDefault();
+        if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            document.getElementById('delete-account-form').submit();
+        }
+    }
+</script>
 
 <!-- JavaScript to Handle Star Click -->
 <script>
@@ -296,3 +315,38 @@
         });
     });
 </script>
+
+<script>
+    function showToast(type, message) {
+        let toastId = 'toast-' + Math.random().toString(36).substr(2, 9);
+        let bgColor = type === 'success' ? 'bg-success' : 'bg-danger';
+
+        let toastHtml = `
+            <div id="${toastId}" class="toast align-items-center text-white ${bgColor} border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>`;
+
+        document.getElementById('toastContainer').innerHTML += toastHtml;
+
+        setTimeout(() => {
+            document.getElementById(toastId).remove();
+        }, 4000);
+    }
+
+    // Show session messages
+    document.addEventListener("DOMContentLoaded", function () {
+        @if(session('success'))
+            showToast('success', "{{ session('success') }}");
+        @endif
+
+        @if(session('error'))
+            showToast('error', "{{ session('error') }}");
+        @endif
+    });
+</script>
+

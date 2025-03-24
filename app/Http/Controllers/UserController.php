@@ -105,7 +105,7 @@ class UserController extends Controller
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6|confirmed',
         ]);
-        
+
         // Find user by email
         $user = User::where('email', $request->email)->first();
 
@@ -114,6 +114,42 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('login')->with('success', 'Password reset successfully!');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        // Validate the input
+        $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . Auth::id(),
+        ]);
+
+        // Get the authenticated user
+        $user = Auth::user();
+
+        // Update user details
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile updated successfully!');
+    }
+
+    // Delete Account
+    public function deleteAccount(Request $request)
+    {
+        $user = Auth::user();
+
+        // Logout the user before deleting the account
+        Auth::logout();
+
+        // Delete the user account
+        $user->delete();
+
+        // Redirect to home page with success message
+        return redirect('/')->with('success', 'Your account has been deleted successfully.');
     }
 
     // Logout

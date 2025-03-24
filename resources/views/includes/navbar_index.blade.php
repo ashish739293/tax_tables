@@ -375,7 +375,7 @@ $(document).ready(function () {
                 _token: "{{ csrf_token() }}"
             },
             success: function (response) {
-                alert(response.message);
+                showToast('success', response.message);
                 window.location.href = "/login";
             },
             error: function () {
