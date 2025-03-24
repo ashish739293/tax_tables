@@ -26,3 +26,9 @@ Route::get('/services_details', [IncomeSourceController::class, 'index']);
 Route::get('/get-services', [ServiceController::class, 'getServicesList']);
 
 Route::resource('services_details', ServiceController::class);
+
+Route::get('/admin/payment-details', [PaymentDetailsController::class, 'index'])->name('admin.payment.details');
+Route::post('/admin/payment-details/store', [PaymentDetailsController::class, 'store'])->name('admin.payment.store');
+Route::post('/admin/payment-details/update/{id}', [PaymentDetailsController::class, 'update'])->name('admin.payment.update');
+Route::delete('/admin/payment-details/delete/{id}', [PaymentDetailsController::class, 'destroy'])->name('admin.payment.delete');
+Route::get('/admin/payment-details/fetch', [PaymentDetailsController::class, 'fetch'])->name('admin.payment.fetch');

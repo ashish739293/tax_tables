@@ -13,7 +13,7 @@ use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeSectionController;
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\PaymentDetailsController;
 
 /*
 use App\Http\Controllers\LoginController;
@@ -158,3 +158,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/rate-us', [RatingController::class, 'store'])->name('ratings.store');
 });
 Route::get('/ratings', [RatingController::class, 'getRatings']);
+
+
+Route::get('/admin/payment-details', [PaymentDetailsController::class, 'index'])->name('payment.details.index');
+Route::get('/admin/payment-details/fetch', [PaymentDetailsController::class, 'fetch'])->name('payment.details.fetch');
+Route::post('/admin/payment-details/add', [PaymentDetailsController::class, 'store'])->name('payment.details.store');
+Route::delete('/admin/payment-details/delete', [PaymentDetailsController::class, 'destroy'])->name('payment.details.destroy');
+
+Route::get('/accountant', function () {
+return view('account');
+});

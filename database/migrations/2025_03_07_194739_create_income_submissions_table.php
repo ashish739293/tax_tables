@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('mobile');
+            $table->string('amount')->nullable();
+            $table->string('status')->default('Pending')->nullable();
             $table->string('kyc_docs');
             $table->string('income_proof');
             $table->string('other_files')->nullable();

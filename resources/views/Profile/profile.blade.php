@@ -101,7 +101,7 @@
         <button class="tab-button active" onclick="openTab('profile')">Profile</button>
         <button class="tab-button" onclick="openTab('billing')">My Billing Invoices</button>
         <button class="tab-button" onclick="openTab('payment')">Payment History</button>
-        <button class="tab-button" onclick="openTab('invoice')">Invoice</button>
+        <!-- <button class="tab-button" onclick="openTab('invoice')">Invoice</button> -->
         <button class="tab-button" onclick="openTab('rate-us')">Rate US</button>
         <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp-button">Chat in WhatsApp</a>
     </div>

@@ -139,7 +139,12 @@
         <a href="/services" class="{{ request()->is('services') ? 'active' : '' }}"><i class="fas fa-cogs"></i> Services</a>
         <a href="/income_details" class="{{ request()->is('income-data') ? 'active' : '' }}"><i class="fas fa-wallet"></i> Income Details</a>
         <a href="/blogs" class="{{ request()->is('blogs') ? 'active' : '' }}"><i class="fas fa-newspaper"></i> Blogs</a>
-        <a href="/add_slider" class="{{ request()->is('blogs') ? 'active' : '' }}"><i class="fas fa-newspaper"></i> Add Slider</a>
+        <a href="/add_slider" class="{{ request()->is('add_slider') ? 'active' : '' }}">
+        <i class="fas fa-sliders-h"></i> Add Slider
+        </a>
+        <a href="/admin/payment-details" class="{{ request()->is('add_payment_details') ? 'active' : '' }}">
+        <i class="fas fa-credit-card"></i> Add Payment Details
+        </a>
     </div>
 
     <!-- Main Content -->

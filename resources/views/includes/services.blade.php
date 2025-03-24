@@ -212,7 +212,7 @@ window.onload = function () {
                     <div class="service-card-body">
                         <p class="service-card-title">${service.name}</p>
                         ${keyPointsHTML}
-                        <button onclick="OpenModal()" type="button" class="service-overlay-btn">
+                        <button onclick="OpenModal(${service.price})" type="button" class="service-overlay-btn">
                             APPLY NOW →
                         </button>
                     </div>

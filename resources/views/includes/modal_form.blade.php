@@ -41,7 +41,20 @@
     background-color: #f8f9fa;
 }
 
+.payment-box {
+    background: linear-gradient(135deg,rgb(5, 214, 75), #05d69f);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <!-- Modal -->
 <div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModalLabel" aria-hidden="true">
@@ -62,6 +75,7 @@
                 <!-- Step 1: Personal Information -->
                 <div id="step1">
                     <form id="incomeFormStep1">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Full Name</label>
@@ -93,12 +107,30 @@
                         <div class="mt-3">
                             <label class="form-label">Select Your Plan</label><br>
                             <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="plan[]" value="Basic">
-                                <label class="form-check-label">Basic Plan</label>
+                                <input type="checkbox" class="form-check-input" name="plan[]" value="1">
+                                <label class="form-check-label">Income From Salary or House Property or Other Source or All Three</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="plan[]" value="Premium">
-                                <label class="form-check-label">Premium Plan</label>
+                                <input type="checkbox" class="form-check-input" name="plan[]" value="2">
+                                <label class="form-check-label">Income From Salary With Capital Gain</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" name="plan[]" value="3">
+                                <label class="form-check-label">Income From Business & Profession or Other Sources Income or Both</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" name="plan[]" value="4">
+                                <label class="form-check-label">Income From Business & Profession With Capital Gain</label>
+                            </div>
+                            <br/>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" name="plan[]" value="5">
+                                <label class="form-check-label">NRI Income / Foreign Income</label>
+                            </div>
+                            <br/>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" name="plan[]" value="6">
+                                <label class="form-check-label">Other Cases</label>
                             </div>
                         </div>
 
@@ -108,7 +140,11 @@
 
                 <!-- Step 2: Payment Details -->
                 <div id="step2" style="display: none;">
+                <div class="payment-box">
+                    <span>Paying Amount: <i class="fa-solid fa-indian-rupee-sign"></i><span id="payingAmount">0</span></span>
+                </div>
                     <form id="incomeFormStep2">
+                        @csrf
                         <h5 class="mb-3">Payment Method</h5>
                         <div class="d-flex justify-content-between">
                             <label class="btn btn-outline-secondary">
@@ -125,15 +161,27 @@
                         <div id="paymentDetails" class="mt-3" style="display: none;">
                             <div id="qrDetails" class="payment-method-details" style="display: none;">
                                 <p><strong>Scan QR Code & Upload Receipt</strong></p>
-                                <img src="qr-placeholder.png" alt="QR Code" width="200">
+                                <img src="qr-placeholder.png" alt="QR Code" height="200" width="200" id="qr_code">
                                 <input type="file" class="form-control mt-2" id="qr_receipt" name="qr_receipt" required>
                             </div>
 
                             <div id="bankDetails" class="payment-method-details" style="display: none;">
                                 <p><strong>Bank Transfer</strong></p>
-                                <input type="text" class="form-control mb-2" id="account_number" placeholder="Account Number">
-                                <input type="text" class="form-control mb-2" id="ifsc_code" placeholder="IFSC Code">
-                                <input type="text" class="form-control mb-2" id="account_holder" placeholder="Account Holder Name">
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text"><i class="fa-solid fa-bank"></i></span>
+                                    <input type="text" class="form-control" id="account_number" placeholder="Account Number" disabled>
+                                </div>
+
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text"><i class="fa-solid fa-code"></i></span>
+                                    <input type="text" class="form-control" id="ifsc_code" placeholder="IFSC Code" disabled>
+                                </div>
+
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control" id="account_holder" placeholder="Account Holder Name" disabled>
+                                </div>
+                                <p><strong>Attach Screenshot</strong></p>
                                 <input type="file" class="form-control mt-2" id="bank_receipt" name="bank_receipt" required>
                             </div>
 
@@ -156,10 +204,12 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script>
 
-function OpenModal(){
+function OpenModal(amount){
 
     var myModal = new bootstrap.Modal(document.getElementById('incomeModal'));
     myModal.show();  // This will display the modal automatically
+    fetchPaymentDetails();
+    document.getElementById("payingAmount").textContent = amount.toLocaleString(); // Adds commas for better formatting
 
 }
 
@@ -407,6 +457,7 @@ function OpenModal(){
         formData.append('account_holder', $('#account_holder').val());
         formData.append('bank_receipt', $('#bank_receipt')[0].files[0]);
     }
+    formData.append('amount', $('#payingAmount').text());
 
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
@@ -437,5 +488,19 @@ function OpenModal(){
         }
     });
 });
+
+function fetchPaymentDetails() {
+        $.get("{{ route('payment.details.fetch') }}", function (response) {
+                                
+            // Prefill form data
+            $("#account_number").val(response.data.account_number);
+            $("#ifsc_code").val(response.data.ifsc_code);
+            $("#account_holder").val(response.data.holder_name);
+            let qrUrl = response.data.qr_code || "qr-placeholder.png"; // Fallback if no QR available
+
+            $("#qr_code").attr("src", qrUrl);
+
+        });
+    }
 
 </script>

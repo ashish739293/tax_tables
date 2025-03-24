@@ -178,7 +178,7 @@ function loadIncomeSources() {
                     <div class="card-body">
                         <p class="card-title1">${source.title}</p>
                         ${keyPointsHTML}
-                        <button onclick="OpenModal()" type="button" class="btn overlay-btn">APPLY NOW →</button>
+                        <button onclick="OpenModal(${source.fees})" type="button" class="btn overlay-btn">APPLY NOW →</button>
                     </div>
                 </div>
             </div>`;
