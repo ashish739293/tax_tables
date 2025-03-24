@@ -179,6 +179,11 @@
     color: #333;
 }
 
+.mega-menu .dropdown-item:hover {
+    color: blue;
+    background: none;
+}
+
 .mega-menu .dropdown-item {
     padding: 5px 15px;
 }
