@@ -98,6 +98,24 @@ class UserController extends Controller
         return response()->json(['message' => 'Password updated successfully']);
     }
 
+    public function resetPassword(Request $request)
+    {
+        // Validate the input
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        
+        // Find user by email
+        $user = User::where('email', $request->email)->first();
+
+        // Update the password
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Password reset successfully!');
+    }
+
     // Logout
     public function logout()
     {

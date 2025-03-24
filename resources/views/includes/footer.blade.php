@@ -18,6 +18,7 @@
                 <a class="footer-link text-light mb-2" href="/"><i class="fas fa-angle-right me-2"></i>Home</a>
                 <a class="footer-link text-light mb-2" href="/contact"><i class="fas fa-angle-right me-2"></i>Contact</a>
                 <a class="footer-link text-light mb-2" href="/blogs"><i class="fas fa-angle-right me-2"></i>Blogs</a>
+                <a class="footer-link text-light mb-2" href="/about"><i class="fas fa-angle-right me-2"></i>About</a>
                 <a class="footer-link text-light" href="/login"><i class="fas fa-angle-right me-2"></i>Login</a>
             </div>
         </div>

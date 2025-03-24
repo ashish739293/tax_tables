@@ -73,6 +73,8 @@ Route::get('/login', function () {
     return view('Auth.login');
     })->middleware('guest')->name('login');
 Route::view('password_reset','Auth.email')->middleware('guest')->name('email');
+Route::view('forget_password','Auth.forget_password')->middleware('guest')->name('forget_password');
+Route::post('/reset-password', [UserController::class, 'resetPassword'])->name('password.update');
 Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
 // Route::post('authenticate',[LoginController::class,'authenticate']);
 

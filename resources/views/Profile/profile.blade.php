@@ -1,5 +1,4 @@
 @include('includes.head', ['title' => 'Profile'])
-@include('includes.navbar_index')
 
 <style>
     body {
@@ -101,7 +100,7 @@
         <button class="tab-button active" onclick="openTab('profile')">Profile</button>
         <button class="tab-button" onclick="openTab('billing')">My Billing Invoices</button>
         <button class="tab-button" onclick="openTab('payment')">Payment History</button>
-        <!-- <button class="tab-button" onclick="openTab('invoice')">Invoice</button> -->
+        <button class="tab-button" onclick="openTab('invoice')">Invoice</button>
         <button class="tab-button" onclick="openTab('rate-us')">Rate US</button>
         <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp-button">Chat in WhatsApp</a>
     </div>
@@ -111,7 +110,7 @@
         <div class="col-md-3 bg-light p-3 rounded">
             <div class="text-center">
                 <img src="https://www.gravatar.com/avatar/{{ md5(strtolower(trim($user->email))) }}?s=100" class="rounded-circle mb-2" alt="Avatar">
-                <h5>{{ $user->firstname }} {{ $user->lastname }}</h5>
+                <h5 style="color:#ff7b00">{{ $user->firstname }} {{ $user->lastname }}</h5>
                 <p><a href="#" class="text-primary">View Profile</a></p>
             </div>
             <ul class="list-group">
@@ -119,6 +118,7 @@
                 <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#updatePasswordModal">Change Password</a></li>
                 <li class="list-group-item"><a href="#">Privacy</a></li>
                 <li class="list-group-item text-danger"><a href="#">Delete Account</a></li>
+                <li class="list-group-item text-danger"><a href="/logout">Logout</a></li>
             </ul>
         </div>
 

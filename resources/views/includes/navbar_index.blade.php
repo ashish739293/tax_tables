@@ -72,6 +72,11 @@
                         <a href="/blog" class="nav-link">Blogs</a>
                     </li>
 
+                    <!-- Blogs Menu -->
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link">About</a>
+                    </li>
+
                     <!-- Account Dropdown -->
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
@@ -115,8 +120,6 @@
 
 <style>
 /* General Reset */
-
-
 .navbar {
     position: fixed;
     width: 100%;
@@ -360,9 +363,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
-
-
 
 // Logout with AJAX
 $(document).ready(function () {
