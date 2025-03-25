@@ -1,7 +1,7 @@
 <style>
     .consultation-section {
         position: relative;
-        background: url('https://taxtablet.in/wp-content/uploads/2024/05/6385b70e089ba_how-tax-consultants-are-helpful-to-your-business.jpg') no-repeat center center;
+        background: url('/image/consultanct.jpg') no-repeat center center;
         background-size: cover;
         min-height: 400px;
         display: flex;

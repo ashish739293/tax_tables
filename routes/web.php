@@ -172,3 +172,7 @@ Route::delete('/admin/payment-details/delete', [PaymentDetailsController::class,
 Route::get('/accountant', function () {
 return view('account');
 });
+
+Route::get('/payment-history', [IncomeController::class, 'paymentHistory'])->name('payment.history');
+Route::get('/invoice/{id}', [IncomeController::class, 'showInvoice'])->name('invoice.show');
+

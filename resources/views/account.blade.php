@@ -11,5 +11,12 @@
 
 @include('account.section1')
 
+
+@include('includes.virtualAcount')
+
+
+@include('account.section2')
+
+
 <!-- Include file from include/footer.blade.php file -->
 @include('includes.footer')

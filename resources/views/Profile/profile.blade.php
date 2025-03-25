@@ -1,4 +1,5 @@
 @include('includes.head', ['title' => 'Profile'])
+@include('includes.navbar_index')
 
 <style>
     body {
@@ -6,7 +7,7 @@
         color: #fff;
         font-family: 'Poppins', sans-serif;
         min-height: 100vh;
-        padding: 30px 10px;
+        padding: 24px 10px;
     }
 
     .container {
@@ -97,13 +98,18 @@
 <div class="container mt-5">
     <!-- Feature Buttons -->
     <div class="tab-buttons">
-        <button class="tab-button active" onclick="openTab('profile')">Profile</button>
-        <button class="tab-button" onclick="openTab('billing')">My Billing Invoices</button>
-        <button class="tab-button" onclick="openTab('payment')">Payment History</button>
-        <button class="tab-button" onclick="openTab('invoice')">Invoice</button>
-        <button class="tab-button" onclick="openTab('rate-us')">Rate US</button>
-        <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp-button">Chat in WhatsApp</a>
-    </div>
+<button class="tab-button active" onclick="openTab('profile',event)">Profile</button>
+<!-- <button class="tab-button" onclick="openTab('billing')">My Billing Invoices</button> -->
+<button class="tab-button" onclick="openTab('payment',event)">Payment History</button>
+<!-- <button class="tab-button" onclick="openTab('invoice')">Invoice</button> -->
+<button class="tab-button" onclick="openTab('rate-us',event)">Rate US</button>
+<a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp-button">Chat in WhatsApp</a>
+</div>
+
+
+
+
+
 
     <div class="row">
         <!-- Sidebar Menu -->
@@ -164,20 +170,51 @@
             </div>
 
             <!-- Payment History -->
-            <div id="payment" class="tab-content">
-                <div class="card p-4">
-                    <h4 class="text-warning">Payment History</h4>
-                    <p>Coming Soon...</p>
-                </div>
-            </div>
+<div id="payment" class="tab-content">
+<div class="card p-4">
+<h4 class="text-warning">Payment History</h4>
+<div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+<table class="table table-striped" id="paymentTable">
+<thead class="table-secondary text-light">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Email</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Payment Method</th>
+<th>Date</th>
+<th>Invoice</th>
+</tr>
+</thead>
+<tbody>
+<!-- Data loads dynamically -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
 
-            <!-- Invoice Section -->
-            <div id="invoice" class="tab-content">
-                <div class="card p-4">
-                    <h4 class="text-warning">Invoice</h4>
-                    <p>Coming Soon...</p>
-                </div>
-            </div>
+<!-- Invoice Section -->
+<!-- Invoice Modal -->
+<div class="modal fade" id="invoiceModal" tabindex="-1" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header bg-primary text-dark">
+<h5 class="modal-title" id="invoiceModalLabel">Invoice Details</h5>
+<button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body text-dark" id="invoiceContent">
+<p class="text-center text-muted">Select an invoice to view details</p>
+</div>
+<div class="modal-footer">
+<button id="downloadInvoice" class="btn btn-success" style="display: none;">Download Invoice</button>
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
 
             <!-- Invoice Section -->
             <div id="rate-us" class="tab-content">
@@ -249,18 +286,46 @@
     </div>
 
 <script>
-    function openTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.classList.remove('active');
-        });
+    window.openTab = function (tabId, event = null) {
+// Remove 'active' class from all tabs and buttons
+document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
 
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.classList.remove('active');
-        });
+// Add 'active' class to the selected tab
+let selectedTab = document.getElementById(tabId);
+if (selectedTab) {
+selectedTab.classList.add('active');
+}
 
-        document.getElementById(tabId).classList.add('active');
-        event.target.classList.add('active');
-    }
+// Highlight the active button
+let button = document.querySelector(`[onclick="openTab('${tabId}')"]`);
+if (button) {
+button.classList.add('active');
+}
+
+// Update the URL without reloading
+const currentUrl = new URL(window.location);
+currentUrl.searchParams.set("tabId", tabId);
+window.history.pushState({}, "", currentUrl);
+
+// Prevent default event behavior if triggered by a button click
+if (event) event.preventDefault();
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+const urlParams = new URLSearchParams(window.location.search);
+const tabId = urlParams.get("tabId");
+
+if (tabId) {
+window.openTab(tabId);
+}
+
+let selectedTab = document.getElementById(tabId);
+if (selectedTab) {
+selectedTab.classList.add('active');
+}
+});
+
 
     // update password
     document.getElementById('updatePasswordForm').addEventListener('submit', function(event) {
@@ -349,4 +414,191 @@
         @endif
     });
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+$(document).ready(function () {
+fetchPaymentHistory();
+
+function fetchPaymentHistory() {
+$.ajax({
+url: "{{ route('payment.history') }}",
+type: "GET",
+beforeSend: function () {
+$("#paymentTable tbody").html(`<tr><td colspan="8" class="text-center">Loading...</td></tr>`);
+},
+success: function (response) {
+let tableBody = $("#paymentTable tbody");
+tableBody.empty();
+
+if (response.length === 0) {
+tableBody.html(`<tr><td colspan="8" class="text-center">No payments found.</td></tr>`);
+return;
+}
+
+response.forEach((payment, index) => {
+tableBody.append(`
+<tr>
+<td>${index + 1}</td>
+<td>${payment.name}</td>
+<td>${payment.email}</td>
+<td>₹${parseFloat(payment.amount).toFixed(2)}</td>
+<td><span class="badge bg-${payment.status === 'Completed' ? 'success' : 'danger'}">${payment.status}</span></td>
+<td>${payment.payment_method}</td>
+<td>${new Date(payment.created_at).toLocaleDateString()}</td>
+<td>
+<button class="btn btn-primary btn-sm view-invoice" data-id="${payment.id}">View</button>
+</td>
+</tr>
+`);
+});
+},
+error: function () {
+$("#paymentTable tbody").html(`<tr><td colspan="8" class="text-center text-danger">Failed to load payments.</td></tr>`);
+}
+});
+}
+
+// Fetch Invoice Details & Show in Side Panel
+$(document).on("click", ".view-invoice", function () {
+let paymentId = $(this).data("id");
+
+$.ajax({
+url: `/invoice/${paymentId}`,
+type: "GET",
+beforeSend: function () {
+$("#invoiceContent").html(`<p class="text-center">Loading...</p>`);
+$("#downloadInvoice").hide();
+},
+success: function (data) {
+let invoiceDetails = `
+<div class="text-center mb-3">
+<img src="/assets/logo.png" alt="Company Logo" width="100">
+</div>
+<p><strong>Name:</strong> ${data.name}</p>
+<p><strong>Email:</strong> ${data.email}</p>
+<p><strong>Mobile:</strong> ${data.mobile}</p>
+<p><strong>Amount Paid:</strong> ₹${parseFloat(data.amount).toFixed(2)}</p>
+<p><strong>Payment Method:</strong> ${data.payment_method}</p>
+<p><strong>Status:</strong> <span class="badge bg-${data.status === 'Completed' ? 'success' : 'danger'}">${data.status}</span></p>
+<p><strong>Date:</strong> ${new Date(data.created_at).toLocaleDateString()}</p>
+`;
+
+$("#invoiceContent").html(invoiceDetails);
+$("#downloadInvoice").data("invoice", data).show();
+},
+error: function () {
+$("#invoiceContent").html(`<p class="text-danger text-center">Failed to load invoice.</p>`);
+$("#downloadInvoice").hide();
+}
+});
+});
+
+// Download Invoice as PDF with Styling
+$("#downloadInvoice").on("click", function () {
+let data = $(this).data("invoice");
+
+if (!data) return;
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+doc.setFont("helvetica", "bold");
+doc.setTextColor(40, 116, 166);
+doc.text("Invoice Details", 20, 20);
+
+doc.setFont("helvetica", "normal");
+doc.setTextColor(0, 0, 0);
+doc.text(`Name: ${data.name}`, 20, 40);
+doc.text(`Email: ${data.email}`, 20, 50);
+doc.text(`Mobile: ${data.mobile}`, 20, 60);
+doc.text(`Amount Paid: ₹${parseFloat(data.amount).toFixed(2)}`, 20, 70);
+doc.text(`Payment Method: ${data.payment_method}`, 20, 80);
+doc.text(`Status: ${data.status}`, 20, 90);
+doc.text(`Date: ${new Date(data.created_at).toLocaleDateString()}`, 20, 100);
+
+// Adding a footer
+doc.setFontSize(10);
+doc.setTextColor(100);
+doc.text("Thank you for your payment!", 20, 120);
+
+doc.save(`Invoice_${data.id}.pdf`);
+});
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+$(document).ready(function () {
+// Fetch Invoice Details & Show in Modal
+$(document).on("click", ".view-invoice", function () {
+let paymentId = $(this).data("id");
+
+$.ajax({
+url: `/invoice/${paymentId}`,
+type: "GET",
+beforeSend: function () {
+$("#invoiceContent").html(`<p class="text-center text-muted">Loading...</p>`);
+$("#downloadInvoice").hide();
+},
+success: function (data) {
+let invoiceDetails = `
+<div class="text-center mb-3">
+<img src="/assets/logo.png" alt="Company Logo" width="100">
+</div>
+<p><strong>Name:</strong> ${data.name}</p>
+<p><strong>Email:</strong> ${data.email}</p>
+<p><strong>Mobile:</strong> ${data.mobile}</p>
+<p><strong>Amount Paid:</strong> ₹${parseFloat(data.amount).toFixed(2)}</p>
+<p><strong>Payment Method:</strong> ${data.payment_method}</p>
+<p><strong>Status:</strong> <span class="badge bg-${data.status === 'Completed' ? 'success' : 'danger'}">${data.status}</span></p>
+<p><strong>Date:</strong> ${new Date(data.created_at).toLocaleDateString()}</p>
+`;
+
+$("#invoiceContent").html(invoiceDetails);
+$("#downloadInvoice").data("invoice", data).show();
+
+// Show the modal
+$("#invoiceModal").modal("show");
+},
+error: function () {
+$("#invoiceContent").html(`<p class="text-danger text-center">Failed to load invoice.</p>`);
+$("#downloadInvoice").hide();
+}
+});
+});
+
+// Download Invoice as PDF
+$("#downloadInvoice").on("click", function () {
+let data = $(this).data("invoice");
+
+if (!data) return;
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+doc.setFont("helvetica", "bold");
+doc.setTextColor(40, 116, 166);
+doc.text("Invoice Details", 20, 20);
+
+doc.setFont("helvetica", "normal");
+doc.setTextColor(0, 0, 0);
+doc.text(`Name: ${data.name}`, 20, 40);
+doc.text(`Email: ${data.email}`, 20, 50);
+doc.text(`Mobile: ${data.mobile}`, 20, 60);
+doc.text(`Amount Paid: ₹${parseFloat(data.amount).toFixed(2)}`, 20, 70);
+doc.text(`Payment Method: ${data.payment_method}`, 20, 80);
+doc.text(`Status: ${data.status}`, 20, 90);
+doc.text(`Date: ${new Date(data.created_at).toLocaleDateString()}`, 20, 100);
+
+// Adding a footer
+doc.setFontSize(10);
+doc.setTextColor(100);
+doc.text("Thank you for your payment!", 20, 120);
+
+doc.save(`Invoice_${data.id}.pdf`);
+});
+});
+</script>
+
+
 

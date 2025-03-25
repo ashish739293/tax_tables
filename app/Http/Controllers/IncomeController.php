@@ -142,7 +142,18 @@ class IncomeController extends Controller
         }
     }
 
+    public function paymentHistory()
+    {
+        $payments = IncomeSubmission::orderBy('created_at', 'desc')->get();
+        return response()->json($payments);
+    }
 
+    // Fetch single invoice details for AJAX
+    public function showInvoice($id)
+    {
+        $invoice = IncomeSubmission::findOrFail($id);
+        return response()->json($invoice);
+    }
 
     }
     

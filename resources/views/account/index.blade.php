@@ -2,26 +2,29 @@
 <style>
 /* Banner Section Styles */
 /* Banner Section Styles */
+/* Banner Section Styles */
 .top_banner {
     background: #1223f0;
-    padding: 100px 40px; /* Increased padding for better spacing */
+    padding: 80px 5%; /* Using percentage for better adaptability */
+    text-align: center;
 }
 
 .top_banner .container {
     max-width: 1200px;
-    padding: 0 20px; /* Added some padding for better responsiveness */
+    padding: 0 20px;
 }
 
+/* Text Section */
 .banner_txt {
     text-align: left;
-    padding-right: 20px; /* Added spacing between text and image */
+    padding-right: 20px;
 }
 
 .banner_txt h1 {
-    font-size: 40px; /* Slightly larger for impact */
+    font-size: 40px;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 20px; /* Increased spacing for readability */
+    margin-bottom: 20px;
 }
 
 .banner_txt h1 span {
@@ -29,26 +32,26 @@
 }
 
 .banner_txt p {
-    font-size: 20px; /* Slightly increased for readability */
-    color: #ddd; /* Softer color for better contrast */
+    font-size: 20px;
+    color: #ddd;
     margin-bottom: 25px;
     line-height: 1.6;
 }
 
 .cta_link {
-    margin-top: 25px; 
+    margin-top: 25px;
 }
 
-/* Enhanced Button Styles */
+/* Button Styles */
 .mainbtn {
     display: inline-flex;
     align-items: center;
-    padding: 14px 24px; /* More padding for better appearance */
+    padding: 14px 24px;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(135deg, #05d69f, #039a75); /* Gradient effect */
-    border-radius: 8px; /* More rounded corners for a modern look */
+    background: linear-gradient(135deg, #05d69f, #039a75);
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 10px rgba(5, 214, 159, 0.3);
@@ -57,7 +60,7 @@
 .mainbtn:hover {
     background: linear-gradient(135deg, #039a75, #028b66);
     box-shadow: 0 6px 14px rgba(5, 214, 159, 0.4);
-    transform: translateY(-2px); /* Slight lift effect */
+    transform: translateY(-2px);
 }
 
 .mainbtn svg {
@@ -67,35 +70,88 @@
 }
 
 .mainbtn:hover svg {
-    transform: translateX(4px); /* Slight arrow movement */
+    transform: translateX(4px);
 }
 
-/* Image Styles */
+/* Image Styling */
 figure img {
-    max-width: 50%;
+    max-width: 60%;
     height: auto;
     border-radius: 12px;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
-    .order_2 {
-        order: 1 !important;
+    .row {
+        display: flex;
+        flex-direction: column-reverse; /* Ensures image is on top */
+        align-items: center;
+        text-align: center;
     }
-    .order_1 {
-        order: 2 !important;
-    }
+
     .banner_txt {
         text-align: center;
         padding: 0 15px;
     }
+
     .cta_link {
         display: flex;
         justify-content: center;
     }
+
     .mainbtn {
-        padding: 12px 20px; /* Adjusted for mobile */
+        padding: 12px 20px;
         font-size: 16px;
+    }
+}
+
+/* Small Screens (Tablets & Phones) */
+@media (max-width: 768px) {
+    .top_banner {
+        padding: 60px 5%;
+    }
+
+    .banner_txt h1 {
+        font-size: 32px;
+    }
+
+    .banner_txt p {
+        font-size: 18px;
+    }
+
+    .mainbtn {
+        padding: 12px 18px;
+        font-size: 16px;
+    }
+
+    figure img {
+        max-width: 50%;
+    }
+}
+
+/* Extra Small Screens (Phones) */
+@media (max-width: 480px) {
+    .top_banner {
+        padding: 50px 5%;
+    }
+
+    .banner_txt h1 {
+        font-size: 28px;
+    }
+
+    .banner_txt p {
+        font-size: 16px;
+    }
+
+    .mainbtn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    figure img {
+        max-width: 80%;
     }
 }
 </style>

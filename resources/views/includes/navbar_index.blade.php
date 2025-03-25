@@ -5,7 +5,7 @@
             <!-- Logo -->
             <a href="/" class="navbar-brand text-uppercase font-weight-bold">
                 <span class="text-primary">
-                    <img src="/image/TabTabletLogo.png" height="40"/>
+                    <img src="/image/logo.png" height="40"/>
                 </span>
             </a>
 
@@ -81,16 +81,15 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" id="shopDropdown" role="button">Account</a>
                         <div class="dropdown-menu">
-                            @auth 
-                             <a href="/logout" class="dropdown-item">Logout</a>
-                            @else
-                            <a class="dropdown-item" href="/login">Login</a>
-                            @endauth
-                            <a class="dropdown-item" href="/invoices">My Invoice</a>
-                            <a class="dropdown-item" href="/subscriptions">My Subscriptions</a>
-                            <a class="dropdown-item" href="/payment-confirmation">Payment Confirmation</a>
-                            <a class="dropdown-item" href="/contact">Contact</a>
-                        </div>
+                        @auth 
+                        <a href="/logout" class="dropdown-item">Logout</a>
+                        <a class="dropdown-item" href="/profile?tabId=payment">My Invoice</a>
+                        <a class="dropdown-item" href="#">My Subscriptions</a>
+                        <a class="dropdown-item" href="/profile?tabId=payment">Payment Confirmation</a>
+                        @else
+                        <a class="dropdown-item" href="/login">Login</a>
+                        @endauth                       
+                     </div>
                     </li>
 
                     <!-- Profile Menu with Authentication -->
