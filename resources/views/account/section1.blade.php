@@ -63,7 +63,7 @@
             <div class="col-lg-6 order_1">
                 <figure>
                     <video id="bg-video" autoplay loop muted playsinline preload="auto">
-                        <source src="https://www.whizconsulting.net/wp-content/uploads/2025/02/whiz-intro-video.mp4" height="300" width="400" type="video/mp4">
+                        <source src="/video/about-video.mp4" height="300" width="400" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <button class="play-button" id="play-btn">

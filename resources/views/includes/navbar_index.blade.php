@@ -59,7 +59,7 @@
 
                     <!-- Virtual Account Menu -->
                     <li class="nav-item">
-                        <a href="/" class="nav-link">Virtual Account</a>
+                        <a href="/accountant" class="nav-link">Virtual Account</a>
                     </li>
 
                     <!-- Contact Menu -->
@@ -83,20 +83,20 @@
                         <div class="dropdown-menu">
                         @auth 
                         <a href="/logout" class="dropdown-item">Logout</a>
+                        <a href="/profile" class="nav-link">Profile</a>
                         <a class="dropdown-item" href="/profile?tabId=payment">My Invoice</a>
                         <a class="dropdown-item" href="#">My Subscriptions</a>
                         <a class="dropdown-item" href="/profile?tabId=payment">Payment Confirmation</a>
                         @else
                         <a class="dropdown-item" href="/login">Login</a>
-                        @endauth                       
+                        @endauth       
+                        <a href="/contact" class="dropdown-item">Contact</a>
+                        <a href="/blog" class="dropdown-item">Blogs</a>                
                      </div>
                     </li>
 
                     <!-- Profile Menu with Authentication -->
                     @auth
-                    <li class="nav-item">
-                        <a href="/profile" class="nav-link">Profile</a>
-                    </li>
 
                     <!-- Appointment Menu -->
                     @else

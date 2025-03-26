@@ -12,6 +12,9 @@ class MailController extends Controller
     public function sendMail(Request $request)
     {
         try {
+
+            Log::info("Email successfully sent to: Start<><><><>< ".$request);
+
             // Validate request data
             $request->validate([
                 'recipients' => 'required|array',

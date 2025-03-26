@@ -1,3 +1,5 @@
+@include('includes.blogtitle')
+
 <div class="container py-5 mt-5">
     <h2 class="text-left fw-bold mb-5">Latest Blogs</h2>
 

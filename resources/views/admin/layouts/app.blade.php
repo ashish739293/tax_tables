@@ -160,7 +160,7 @@
                     <i class="fas fa-user-circle"></i> Admin
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="/profile">Profile</a></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#updatePasswordModal">Update Password</a></li>
                     <li><a class="dropdown-item" href="/logout">Log Out</a></li>
                 </ul>

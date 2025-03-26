@@ -27,7 +27,7 @@
     }
 </style>
 
-<div class="container-fluid pt-5 mt-5" id="contactPage">
+<div class="container-fluid " id="contactPage">
 @include('includes.category')
     <div class="text-center mb-5 mt-5">
         <h2 class="section-title px-5"><span class="px-2">Contact For Any Queries</span></h2>

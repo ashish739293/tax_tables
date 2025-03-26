@@ -10,6 +10,13 @@ use DataTables;
 
 class IncomeController extends Controller
 {
+
+    protected $mailController;
+
+    public function __construct(MailController $mailController)
+    {
+        $this->mailController = $mailController;
+    }
     
     public function index()
     {
@@ -27,7 +34,7 @@ class IncomeController extends Controller
     public function submitForm(Request $request)
     {
 
-        $mailController = new MailController();
+        
         // Validate the request
         $request->validate([
             'name' => 'required|string|max:255',
@@ -89,7 +96,7 @@ class IncomeController extends Controller
             'message' => $message
         ]);
 
-        $mailController->sendMail($emailData);
+        $this->mailController->sendMail($emailData);
     
         return response()->json(['message' => 'Form submitted successfully']);
     }
@@ -102,14 +109,14 @@ class IncomeController extends Controller
 
         $emailData = new Request([
             'recipients' => [
-                $request->email,  // User email
+                $income->email,  // User email
                 'ashishkumar739293@gmail.com' // Admin email
             ],
             'subject' => 'Tax Tablet - Payment Status Update',
-            'message' => `YOur  status of your requirment has been $request->status `
+            'message' => 'Your Payment  status of your requirment has been  '. $request->status 
         ]);
-
-        $mailController->sendMail($emailData);
+        
+        $this->mailController->sendMail($emailData);
     
         return response()->json(['message' => 'Status updated successfully!']);
     }

@@ -3,7 +3,7 @@
         position: relative;
         background: url('/image/consultanct.jpg') no-repeat center center;
         background-size: cover;
-        min-height: 400px;
+        min-height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -11,6 +11,7 @@
         padding: 50px 20px;
         color: white;
         flex-direction: column;
+        margin-bottom:60px;
     }
 
     .consultation-overlay {
