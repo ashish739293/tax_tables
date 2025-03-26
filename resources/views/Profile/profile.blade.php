@@ -443,7 +443,7 @@ tableBody.append(`
 <td>${payment.name}</td>
 <td>${payment.email}</td>
 <td>₹${parseFloat(payment.amount).toFixed(2)}</td>
-<td><span class="badge bg-${payment.status === 'Completed' ? 'success' : 'danger'}">${payment.status}</span></td>
+<td><span class="badge bg-${payment.status === 'processed' ? 'success' : 'danger'}">${payment.status}</span></td>
 <td>${payment.payment_method}</td>
 <td>${new Date(payment.created_at).toLocaleDateString()}</td>
 <td>

@@ -83,7 +83,7 @@
                         <div class="dropdown-menu">
                         @auth 
                         <a href="/logout" class="dropdown-item">Logout</a>
-                        <a href="/profile" class="nav-link">Profile</a>
+                        <a href="/profile" class="dropdown-item">Profile</a>
                         <a class="dropdown-item" href="/profile?tabId=payment">My Invoice</a>
                         <a class="dropdown-item" href="#">My Subscriptions</a>
                         <a class="dropdown-item" href="/profile?tabId=payment">Payment Confirmation</a>
